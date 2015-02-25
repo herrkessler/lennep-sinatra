@@ -73,7 +73,7 @@ $(document).ready(function(){
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVycmtlc3NsZXIiLCJhIjoiRGU5R0JVYyJ9.jrfMyYYLrHEQEeWircmkGA';
 
     var map = L.mapbox.map('map', 'herrkessler.k8e97o6c')
-      .setView([sessionUser.lat, sessionUser.lng], 8);
+      .setView([sessionUser.lat, sessionUser.lng], 17);
 
     var myLayer = L.mapbox.featureLayer().addTo(map);
 

@@ -11,5 +11,5 @@ li.card.venue
   .card-content
     h4
       a.venue-name href="/venues/#{venue.id}" = venue.title
-    p = venue.description
+    p = truncate_words(venue.description, 40)
     a.button href="/venues/#{venue.id}" Mehr

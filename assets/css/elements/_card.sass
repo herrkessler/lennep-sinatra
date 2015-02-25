@@ -8,9 +8,20 @@
     line-height: 1.6
     margin-bottom: $default-margin
     font-size: 14px
+  +media($mobile)
+    +span-columns(6)
+    +omega-reset(3n)
+    +omega(2n)
 
 .card-avatar
   +span-columns(1 of 4)
+  +media($tablet)
+    +span-columns(1 of 4)
+    +shift(1.5)
+  +media($mobile)
+    +span-columns(2 of 4)
+    +shift(1)
+
 
 .card-avatar-inner
   position: relative
@@ -31,6 +42,8 @@
 .card-content
   +span-columns(3 of 4)
   +omega
+  +media($tablet)
+    +span-columns(4 of 4)
 
 .card-favourite-indicator
   +total-center

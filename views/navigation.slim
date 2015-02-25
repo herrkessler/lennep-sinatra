@@ -16,7 +16,7 @@ nav#main-navigation
           a.button.highlight.reversed href="/auth/login" login
       - else 
         li.main-navigation-list-item.logout
-          a href="/auth/logout" logout
+          a.button.highlight.reversed href="/auth/logout" logout
         li.main-navigation-list-item.dash
           a href="/users/#{@sessionUser.id}"
             img.main-navigation-avatar src= @sessionUser.gravatarURL
