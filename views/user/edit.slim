@@ -1,0 +1,12 @@
+h1 Edit Your Data
+hr
+.edit-avatar
+  form.edit-form action="/users/#{@user.id}/avatar" method="POST" enctype="multipart/form-data"
+    == slim :"user/avatar-form"
+    input.button type="submit" value="Upload new Avatar"
+
+.edit-data
+  form.edit-form action="/users/#{@user.id}" method="POST"
+    == slim :"user/update-form"
+    input type="hidden" name="_method" value="PUT"
+    input.button type="submit" value="Update your Data"

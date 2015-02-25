@@ -1,0 +1,21 @@
+nav#main-navigation
+  ul.main-navigation-list
+    li.main-navigation-list-item
+      a href="/" lennep.map
+    li.main-navigation-list-item
+      a href="/tour" tour
+    li.main-navigation-list-item
+      a href="/blog" blog
+    li.main-navigation-list-item
+      a href="/venues" poi
+    li.main-navigation-list-item
+      a href="/users" user
+    - if !@sessionUser
+      li.main-navigation-list-item
+        a href="/auth/login" login
+    - else 
+      li.main-navigation-list-item
+        a href="/auth/logout" logout
+      li.main-navigation-list-item
+        a href="/users/#{@sessionUser.id}"
+          img.main-navigation-avatar src= @sessionUser.gravatarURL

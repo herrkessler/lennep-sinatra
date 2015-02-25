@@ -1,0 +1,32 @@
+doctype html 
+html
+  head 
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /
+    title lennep.map
+    == css :application, :media => 'screen'
+    link href="https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css" rel="stylesheet"
+    == js :application
+    == js :map
+  body class=('index' if request.path == '/') class=(env['warden'].authenticated?  ? 'logged-in' : 'logged-out')
+
+    #flash-message
+      .container
+        - if flash[:success]
+          p.success 
+            span ✔ 
+            = flash[:success]
+
+        - if flash[:error]
+          p.error
+           span ✖ 
+           = flash[:error]
+
+    == slim :"navigation"
+
+    main
+      .container
+        .inner
+          / #ad
+          == yield

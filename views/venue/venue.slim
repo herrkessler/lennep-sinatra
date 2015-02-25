@@ -1,0 +1,11 @@
+li.card.venue
+  .card-avatar style=("background:url(/images/wuwaende.jpg) center center no-repeat; background-size:cover;")
+    - if request.fullpath == '/venues'
+      / .card-online-indicator class=('faved' if @sessionUser.venues.include? venue)
+    a href="/venues/#{venue.id}"
+    .card-venue-info
+      .card-venue-info-user
+        i.fa.fa-user
+        / span = venue.users.count
+  .card-content
+    a.venue-name href="/venues/#{venue.id}" = venue.title

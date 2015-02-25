@@ -1,0 +1,46 @@
+#venue-profile
+  h1 = @venue.title
+  hr
+  #venue-description
+    #venue-gallery
+      #venue-main-image
+        #venue-gallery-nav
+          .venue-gallery-nav.left.last
+            i.fa.fa-arrow-circle-o-left
+          .venue-gallery-nav.right
+            i.fa.fa-arrow-circle-o-right
+        img#venue-hero-image src="/images/#{@venue.gallery.first}"
+      ul.venue-gallery-list
+        - @venue.gallery.each_with_index do |image,index|
+          li.venue-gallery-list-item data-id=index+1 class=('selected' if index == 0)
+            img src="/images/#{image}"
+    #venue-info
+      h2 = @venue.title
+      p = @venue.street
+      p = @venue.zip
+      p = @venue.town
+      br
+      p = @venue.description
+      br
+      p = @venue.url
+
+      dl#venue-facts
+
+        dt Latitude
+        dd = @venue.location['lat']
+        
+        dt Longitude
+        dd = @venue.location['lng']
+
+a href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
+br
+br
+a href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
+
+/ - if env['warden'].user.admin == true
+/   br
+/   br
+/   .admin-bar
+/     form action="/venues/#{@venue.id}" method="POST"
+/       input type="hidden" name="_method" value="DELETE"
+/       input.button.admin type="submit" value="Delete THIS venue"
