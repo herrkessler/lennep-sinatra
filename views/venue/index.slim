@@ -1,14 +1,17 @@
-h1 POIs
-hr
-#map
-#search
-== will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :page_links => false, :class => 'top-pagination pagination'
-ul.venues
-  - @venues.each do |venue|
-    == slim :"venue/venue", :locals => {venue: venue}
+section
+  #map
+section
+  #search
+    .container
+      == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :page_links => false, :class => 'top-pagination pagination'
+      ul.venues
+        - @venues.each do |venue|
+          == slim :"venue/venue", :locals => {venue: venue}
 
-== will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :class => 'bottom-pagination pagination'
-
-/ - if @sessionUser.admin == true
-/   .admin-bar
-/     a.button.admin href="/venues/new" Add NEW venue
+      == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :class => 'bottom-pagination pagination'
+section
+  #admin
+    .container
+      - if @sessionUser.admin == true
+        .admin-bar
+          a.button.admin href="/venues/new" Add NEW venue

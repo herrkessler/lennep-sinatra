@@ -1,9 +1,21 @@
+#main-navigation
+  background: #333
+  a
+    color: white
+
 .main-navigation-list
-  margin: $default-margin 0
+  padding: $default-padding 0
 
 .main-navigation-list-item
   display: inline
   margin-right: $default-margin
+  &.login, &.logout, &.dash
+    float: right
+    margin-right: 0
+    margin-left: $default-margin
+  &.index
+    font-weight: bold
+    margin-right: $default-margin*2
 
 .main-navigation-avatar
   +size(20px)

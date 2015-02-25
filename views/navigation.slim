@@ -1,21 +1,22 @@
 nav#main-navigation
-  ul.main-navigation-list
-    li.main-navigation-list-item
-      a href="/" lennep.map
-    li.main-navigation-list-item
-      a href="/tour" tour
-    li.main-navigation-list-item
-      a href="/blog" blog
-    li.main-navigation-list-item
-      a href="/venues" poi
-    li.main-navigation-list-item
-      a href="/users" user
-    - if !@sessionUser
-      li.main-navigation-list-item
-        a href="/auth/login" login
-    - else 
-      li.main-navigation-list-item
-        a href="/auth/logout" logout
-      li.main-navigation-list-item
-        a href="/users/#{@sessionUser.id}"
-          img.main-navigation-avatar src= @sessionUser.gravatarURL
+  .container
+    ul.main-navigation-list
+      li.main-navigation-list-item.index
+        a href="/" lennep.map
+      li.main-navigation-list-item.tour
+        a href="/tour" tour
+      li.main-navigation-list-item.blog
+        a href="/blog" blog
+      li.main-navigation-list-item.poi
+        a href="/venues" poi
+      li.main-navigation-list-item.user
+        a href="/users" user
+      - if !@sessionUser
+        li.main-navigation-list-item.login
+          a href="/auth/login" login
+      - else 
+        li.main-navigation-list-item.logout
+          a href="/auth/logout" logout
+        li.main-navigation-list-item.dash
+          a href="/users/#{@sessionUser.id}"
+            img.main-navigation-avatar src= @sessionUser.gravatarURL
