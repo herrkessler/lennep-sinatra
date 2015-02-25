@@ -1,0 +1,43 @@
+.card
+  +span-columns(4)
+  +omega(3n)
+  margin-bottom: $default-margin*2
+  h4
+    margin: $default-margin 0
+  p
+    line-height: 1.6
+    margin-bottom: $default-margin
+    font-size: 14px
+
+.card-avatar
+  +span-columns(1 of 4)
+
+.card-avatar-inner
+  position: relative
+  img
+    border-radius: 50%
+  &:before
+    content: ""
+    opacity: 0
+    background: rgba(white, 0.6)
+    +cover-all
+    +transition(opacity 0.3s ease-out)
+  &:hover
+    &:before
+      opacity: 1
+    .card-favourite-indicator
+      opacity: 1
+
+.card-content
+  +span-columns(3 of 4)
+  +omega
+
+.card-favourite-indicator
+  +total-center
+  +transition(opacity 0.3s ease-out)
+  cursor: pointer
+  font-size: 1.2em
+  opacity: 0
+  &.faved
+    color: $dark-red
+    opacity: 1!important

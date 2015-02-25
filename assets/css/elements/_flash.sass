@@ -1,0 +1,18 @@
+#flash-message
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  +animate(fadeOut, 1s, 3s)
+  p
+    padding: $default-padding/2
+    background: #444
+    display: inline-block
+    border-radius: 3px
+    color: white
+    &.error
+      span
+        color: $red
+    &.success
+      span
+        color: $green

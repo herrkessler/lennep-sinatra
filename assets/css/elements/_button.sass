@@ -1,0 +1,59 @@
+$map: (facebook: #3B5998, twitter: #55ACEE, google: #D73D32, github: silver)
+
+%button
+  display: inline-block
+  border-radius: 3px
+  padding: 5px 6px
+  background: none
+  border: 1px solid black
+  color: black
+  text-decoration: none
+  +transition(border 0.3s ease-out, color 0.3s ease-out)
+  outline: 0
+  font-size: 14px
+  cursor: pointer
+  font-weight: normal
+  -webkit-font-smoothing: antialiased
+  &:hover
+    color: grey
+    border-color: grey
+
+.button
+  @extend %button
+  &.reversed
+    background: black
+    color: white
+    border-color: white
+  &.disabled, &:disabled
+    cursor: default
+  &.signup, &.login
+    font-weight: bold
+  &.highlight
+    color: $highlight
+    border-color: $highlight
+    &:hover
+      color: grey
+      border-color: grey
+    &.reversed
+      color: white
+      border-color: $highlight
+      background: $highlight
+      &:hover
+        color: white
+  &.admin
+    border-color: $admin
+    color: $admin
+  &.icon
+    span
+      margin-left: $default-margin/4
+  &.full
+    display: block
+    width: 100%
+    padding: 10px 0
+  @each $profile, $color in $map
+    &.#{$profile}
+      color: $color
+      border-color: $color
+      &:hover
+        background: $color
+        color: white

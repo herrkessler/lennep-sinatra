@@ -1,7 +1,7 @@
 section
   #map
 section
-  #search
+  #venues
     .container
       == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :page_links => false, :class => 'top-pagination pagination'
       ul.venues
@@ -12,6 +12,6 @@ section
 section
   #admin
     .container
-      - if @sessionUser.admin == true
+      - if @sessionUser && @sessionUser.admin == true
         .admin-bar
           a.button.admin href="/venues/new" Add NEW venue
