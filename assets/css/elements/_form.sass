@@ -1,0 +1,25 @@
+form
+  fieldset
+    display: block
+    border: none
+    outline: none
+    &:not(:last-child)
+      margin-bottom: $default-margin
+      padding: $default-padding
+  label
+    display: block
+    margin-bottom: $default-margin/2
+    +media($mobile)
+      display: none
+  input[type=text], input[type=email], input[type=password], textarea
+    +appearance(none)
+    outline: none
+    border: none
+    background: white
+    padding: 5px 10px
+    +placeholder
+      color: white
+    +media($mobile)
+      width: 100%
+    &:focus
+      border: 1px solid $dark-grey
