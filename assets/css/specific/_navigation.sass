@@ -9,14 +9,55 @@
 .main-navigation-list-item
   display: inline
   margin-right: $default-margin
-  &.login, &.logout, &.dash
+  &.login, &.logout, &.dash, &.mobile
     float: right
     margin-right: 0
     margin-left: $default-margin
   &.index
     font-weight: bold
     margin-right: $default-margin*2
+    &.active
+      z-index: 99999
+      position: relative
+  &.mobile
+    display: none
+    color: white
+  +media($mobile)
+    &.tour, &.blog, &.poi, &.user
+      display: none
+    &.mobile
+      display: block
 
 .main-navigation-avatar
   +size(20px)
   border-radius: 50%
+
+#mobile-navigation
+  +cover-all
+  z-index: -1
+  background: rgba(black, 0.8)
+  opacity: 0
+  +transition(opacity .3s)
+  &.active
+    opacity: 1
+    z-index: 9999
+
+.mobile-navigation-list
+  +total-center
+  width: 55%
+
+.mobile-navigation-list-item
+  margin-bottom: $default-margin/2
+  text-align: center
+  padding: $default-padding/2 0 $default-padding 0
+  &:not(:last-child)
+    border-bottom: 1px solid white
+  a
+    color: white
+    font-size: 1.2em
+    font-weight: bold
+
+.js-mobile-menu-link
+  &.active
+    z-index: 99999
+    position: relative

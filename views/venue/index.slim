@@ -1,22 +1,35 @@
-section
-  #map
-  nav#map-navigation
+article#venue-search
+
+  section#map-wrapper
+    #map
+    nav#map-navigation
+      .container
+        a.button.icon.white href="#"
+          i.fa.fa-map-marker
+          span Find ME!
+        a.button.white href="#"
+          Filter
+  section#venue-wrapper
+    #venues
+      .container
+        == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :page_links => false, :class => 'top-pagination pagination'
+        ul.venues
+          - @venues.each do |venue|
+            == slim :"venue/venue", :locals => {venue: venue}
+
+        == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :class => 'bottom-pagination pagination'
+
+  nav#mobile-map-navigation
     .container
-      a.button.icon href="#"
+      a.button.icon.white href="#"
         i.fa.fa-map-marker
         span Find ME!
-section
-  #venues
-    .container
-      == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :page_links => false, :class => 'top-pagination pagination'
-      ul.venues
-        - @venues.each do |venue|
-          == slim :"venue/venue", :locals => {venue: venue}
+      a.button.white.js-toggle-map-view.toggle-map-view href="#"
+        i.fa.fa-list.fa-fw
 
-      == will_paginate @venues, :previous_label => '◀', :next_label => '▶', :inner_window => '2', :class => 'bottom-pagination pagination'
-section
-  #admin
-    .container
-      - if @sessionUser && @sessionUser.admin == true
-        .admin-bar
-          a.button.admin href="/venues/new" Add NEW venue
+  section#admin-wrapper
+    #admin
+      .container
+        - if @sessionUser && @sessionUser.admin == true
+          .admin-bar
+            a.button.admin href="/venues/new" Add NEW venue

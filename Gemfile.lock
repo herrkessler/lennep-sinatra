@@ -107,7 +107,7 @@ GEM
     neat (1.7.1)
       bourbon (>= 4.0)
       sass (>= 3.3)
-    oj (2.11.4)
+    oj (2.11.5)
     pg (0.18.1)
     rack (1.6.0)
     rack-protection (1.5.3)

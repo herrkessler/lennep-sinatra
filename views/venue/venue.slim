@@ -1,13 +1,17 @@
 li.card.venue
   .card-avatar
     .card-avatar-inner
-      img src="/images/#{venue.gallery.first}"
-      - if @sessionUser
-        .card-favourite-indicator class=('faved' if @sessionUser.venues.include? venue)
-          i.fa.fa-heart
-      - else
-        .card-favourite-indicator
-          i.fa.fa-heart
+      .car-avatar-image-wrapper
+        - if venue.gallery.length != 0
+          img src="#{venue.gallery.first}"
+        - else
+            img src="/images/site.jpg"
+        - if @sessionUser
+          .card-favourite-indicator class=('faved' if @sessionUser.venues.include? venue)
+            i.fa.fa-heart
+        - else
+          .card-favourite-indicator
+            i.fa.fa-heart
   .card-content
     h4
       a.venue-name href="/venues/#{venue.id}" = venue.title

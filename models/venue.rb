@@ -13,7 +13,7 @@ class Venue
 
   property :url, String
 
-  property :gallery, PgArray, :default => ["site.png"]
+  property :gallery, PgArray
 
   property :created_at, DateTime, :lazy => [ :show ]
   property :update_at, DateTime, :lazy => [ :show ]

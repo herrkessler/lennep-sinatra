@@ -63,12 +63,14 @@ class Lennep < Sinatra::Base
     js :application, [
       '/js/lib/jquery-2.1.3.js',
       '/js/specific/socket.js',
+      '/js/specific/navigation.js',
       '/js/app.js',
     ]
 
     js :map, [
       '/js/vendor/mapbox.js',
-      '/js/specific/map.js'
+      '/js/specific/map.js',
+      '/js/specific/venue.js'
     ]
 
     css :application, '/css/application.sass', [

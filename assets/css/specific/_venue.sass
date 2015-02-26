@@ -1,2 +1,30 @@
+#venue-wrapper
+  +media($mobile)
+    +calc(height, "100% - 47px")
+    width: 50%
+    float: left
+    +transition(transform .3s)
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+    &.active
+      +transform(translateX(-100%))
+
 #venues
   margin-top: $default-margin*3
+  +media($mobile)
+    margin-bottom: $default-margin
+
+#venue-search
+  +size(100%)
+  +media($mobile)
+    +size(200% 100%)
+    float: left
+
+#venue-nav
+  display: none
+  +media($mobile)
+    display: block
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
