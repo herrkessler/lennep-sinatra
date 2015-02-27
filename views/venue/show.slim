@@ -36,10 +36,10 @@
           dd = @venue.location['lng']
 
   - if @sessionUser
-    a href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
-    br
-    br
-    a href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
+    - if @sessionUser.venues.include?(@venue)
+      a.button href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
+    - else
+      a.button href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
 
   section#admin-wrapper
     #admin
