@@ -22,8 +22,11 @@
   &.mobile
     display: none
     color: white
+  &.admin
+    a
+      color: $highlight!important
   +media($mobile)
-    &.tour, &.blog, &.poi, &.user
+    &.tour, &.blog, &.poi, &.user, &.category
       display: none
     &.mobile
       display: block
@@ -56,6 +59,9 @@
     color: white
     font-size: 1.2em
     font-weight: bold
+  &.admin
+    a
+      color: $highlight!important
 
 .js-mobile-menu-link
   &.active

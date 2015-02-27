@@ -1,0 +1,9 @@
+.container
+  - @categories.each do |category|
+    p = category.title
+    p = category.synopsis
+    a.button href="/categories/#{category.id}" Show Category
+    a.button href="/categories/#{category.id}/edit" Edit Category
+  br
+  br
+  a.button href="/categories/new" New Category

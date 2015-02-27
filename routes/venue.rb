@@ -4,18 +4,16 @@ class Lennep < Sinatra::Base
   # -----------------------------------------------------------
 
   get '/venues' do
-    # env['warden'].authenticate!
     @sessionUser = env['warden'].user
     @venues = Venue.all.paginate(:page => params[:page], :per_page => 35)
+    @categories = Category.all
     slim :"venue/index", :layout => :layout_venue
   end
 
   get '/venues-map', :provides => :json do
-    # env['warden'].authenticate!
     @sessionUser = env['warden'].user
     venues = Venue.all.paginate(:page => params[:page], :per_page => 35)
     return_data = [];
-    return_data << @sessionUser
     return_data << venues
     halt 200, return_data.to_json
   end
@@ -24,8 +22,8 @@ class Lennep < Sinatra::Base
     env['warden'].authenticate!
     if env['warden'].user.admin?
       @sessionUser = env['warden'].user
-      
       @venue = Venue.new
+      @categories = Category.all
       slim :"venue/new"
     else
       flash[:error] = 'Youre not the admin'
@@ -35,11 +33,8 @@ class Lennep < Sinatra::Base
 
   post '/venues' do
     env['warden'].authenticate!
-
     @sessionUser = env['warden'].user
     venue = Venue.create(params[:venue])
-
-    print venue
 
     if venue.saved? == true
       flash[:success] = 'Neuer POI: "' + venue.title + '" angelegt'
@@ -51,15 +46,56 @@ class Lennep < Sinatra::Base
   end
 
   get '/venues/:id' do
-    # env['warden'].authenticate!
     @sessionUser = env['warden'].user
-    
     @venue = Venue.get(params[:id])
     if @venue != nil
       slim :"venue/show"
     else
       flash[:error] = 'What you are looking for does not exist'
       redirect to("/venues")
+    end
+  end
+
+  get '/venues/:id/edit' do
+    env['warden'].authenticate!
+    @venue = Venue.get(params[:id])
+    @categories = Category.all
+    slim :"venue/edit"
+  end
+
+  put '/venues/:id' do
+    env['warden'].authenticate!
+    venue = Venue.get(params[:id])
+    venue.update(params[:venue])
+    if venue.saved?
+      flash[:success] = 'Venue update successful'
+      redirect to("/venues/#{venue.id}")
+    else
+      flash[:error] = 'Something went wrong'
+      redirect to("/venues/#{venue.id}/edit")
+    end
+  end
+
+  get '/venues/:id/add/:category', :provides => :json do
+    env['warden'].authenticate!
+    venue = Venue.get(params[:id])
+    category = Category.get(params[:category])
+    selectedCategory = CategoryVenue.all(:venue_id => venue.id)
+    if selectedCategory != []
+      selectedCategory.destroy
+      venue.categories << category
+      venue.save
+      venue.categories.save
+      return_data = [];
+      return_data << venue
+      halt 200, return_data.to_json
+    else
+      venue.categories << category
+      venue.save
+      venue.categories.save
+      return_data = [];
+      return_data << venue
+      halt 200, return_data.to_json
     end
   end
 

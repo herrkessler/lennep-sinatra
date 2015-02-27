@@ -9,4 +9,10 @@ class Category
   property :update_at, DateTime, :lazy => [ :show ]
 
   has n, :venues, :through => Resource
+
+  before :save, :sluggish
+
+  def sluggish
+    self.slug = self.title.to_s.downcase
+  end
 end

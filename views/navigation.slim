@@ -4,19 +4,22 @@ nav#main-navigation
       li.main-navigation-list-item.index
         a href="/" lennep.map
       li.main-navigation-list-item.tour
-        a href="/tour" tour
+        a href="/tour" Tour
       li.main-navigation-list-item.blog
-        a href="/blog" blog
+        a href="/blog" Blog
       li.main-navigation-list-item.poi
-        a href="/venues" poi
-      li.main-navigation-list-item.user
-        a href="/users" user
+        a href="/venues" Karte
       li.main-navigation-list-item.mobile
         i.fa.fa-bars.fa-fw.js-mobile-menu-link
       - if !@sessionUser
         li.main-navigation-list-item.login
           a.button.highlight.reversed href="/auth/login" login
-      - else 
+      - else
+        - if @sessionUser.admin
+          li.main-navigation-list-item.user.admin
+            a href="/users" user
+          li.main-navigation-list-item.category.admin
+            a href="/categories" category
         li.main-navigation-list-item.logout
           a.button.highlight.reversed href="/auth/logout" logout
         li.main-navigation-list-item.dash
@@ -26,17 +29,20 @@ nav#main-navigation
 nav#mobile-navigation
   ul.mobile-navigation-list
     li.mobile-navigation-list-item.tour
-      a href="/tour" tour
+      a href="/tour" Tour
     li.mobile-navigation-list-item.blog
-      a href="/blog" blog
+      a href="/blog" Blog
     li.mobile-navigation-list-item.poi
-      a href="/venues" poi
-    li.mobile-navigation-list-item.user
-      a href="/users" user
+      a href="/venues" Karte
     - if !@sessionUser
       li.mobile-navigation-list-item.login
         a href="/auth/login" login
     - else 
+      - if @sessionUser.admin
+        li.mobile-navigation-list-item.user.admin
+          a href="/users" user
+        li.mobile-navigation-list-item.category.admin
+          a href="/categories" category
       li.mobile-navigation-list-item.logout
         a href="/auth/logout" logout
       li.mobile-navigation-list-item.dash

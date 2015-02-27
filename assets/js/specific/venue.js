@@ -1,7 +1,9 @@
 $(document).ready(function(){
   var listToggleButton = $('.js-toggle-map-view'),
       mapWrapper = $('#map-wrapper'),
-      venueWrapper = $('#venue-wrapper');
+      venueWrapper = $('#venue-wrapper'),
+      mapLink = $('#map-link'),
+      mapHeight = mapWrapper.outerHeight();
 
   listToggleButton.on('click', function(event){
     event.preventDefault();
@@ -13,6 +15,17 @@ $(document).ready(function(){
       $(this).addClass('active').find('.fa-list').removeClass('fa-list').addClass('fa-map-marker');
       mapWrapper.addClass('active');
       venueWrapper.addClass('active');
+    }
+  });
+
+  $(window).scroll(function(){
+    var windowPosition = $(window).scrollTop();
+
+    if (windowPosition > mapHeight) {
+      mapLink.addClass('active');
+    }
+    if (windowPosition < mapHeight) {
+      mapLink.removeClass('active');
     }
   });
 });

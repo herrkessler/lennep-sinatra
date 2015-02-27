@@ -4,11 +4,21 @@ article#venue-search
     #map
     nav#map-navigation
       .container
-        a.button.icon.white href="#"
-          i.fa.fa-map-marker
-          span Find ME!
-        a.button.white href="#"
-          Filter
+        #map-navigation-header
+          ul.map-navigation-list
+            li.map-navigation-list-item.locate
+              a.button.icon.white.js-find-on-map href="#"
+                i.fa.fa-user.fa-fw
+                span Find ME
+            li.map-navigation-list-item.filter
+              a.button.white.js-filter-map-button href="#"
+                i.fa.fa-fw.fa-sort
+                span Filter Map
+        ul.category-list
+          - @categories.each do |category|
+            li.category-list-item
+              a.button.white href="#" data-id="#{category.slug}"
+                = category.title
   section#venue-wrapper
     #venues
       .container

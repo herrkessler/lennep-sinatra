@@ -1,0 +1,8 @@
+.container
+  h1 Edit Venue
+  hr
+  .edit-data data-id=@venue.id
+    form.edit-form action="/venues/#{@venue.id}" method="POST"
+      == slim :"venue/form"
+      input type="hidden" name="_method" value="PUT"
+      input.button type="submit" value="Update your Data"

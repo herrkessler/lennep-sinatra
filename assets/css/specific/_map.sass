@@ -15,11 +15,25 @@
 
 #map-navigation
   background: #444
-  padding: $default-padding/2 0
+  max-height: 47px
+  +transition(max-height .3s)
+  &.active
+    max-height: 200px
   a
     color: white
   +media($mobile)
     display: none
+
+#map-navigation-header
+  padding: $default-padding/2 0
+  border-bottom: 1px solid white
+
+.map-navigation-list-item
+  display: inline-block
+  &:not(.locate)
+    margin-right: $default-margin
+  &.locate
+    float: right
 
 .toggle-map-view
   float: right
@@ -34,3 +48,25 @@
     bottom: 0
     left: 0
     right: 0
+
+#map-link
+  position: fixed
+  bottom: $default-margin
+  right: $default-margin
+  cursor: pointer
+  font-size: 2rem
+  +transition(all .3s)
+  opacity: 0
+  &.active
+    opacity: 0.6
+  &:hover
+    +transform(scale(1.4))
+  +media($mobile)
+    display: none 
+
+.category-list
+  margin: $default-margin 0
+
+.category-list-item
+  display: inline-block
+  margin-right: $default-margin/2

@@ -1,24 +1,34 @@
 label for="title" Titel:
-input.title type="text" name="venue[title]" value="#{@venue.title}" size="32"
+input type="text" name="venue[title]" value="#{@venue.title}" size="32"
 br
 br
 
 label for="description" Description:
-input.title type="text" name="venue[description]" value="#{@venue.description}" size="32"
+input type="text" name="venue[description]" value="#{@venue.description}" size="32"
 br
 br
 
 label for="street" Street:
-input.title type="text" name="venue[street]" value="#{@venue.street}" size="32"
+input type="text" name="venue[street]" value="#{@venue.street}" size="32"
 br
 br
 
 label for="zip" ZIP:
-input.title type="text" name="venue[zip]" value="#{@venue.zip}" size="32"
+input type="text" name="venue[zip]" value="#{@venue.zip}" size="32"
 br
 br
 
 label for="town" Town:
-input.title type="text" name="venue[town]" value="#{@venue.town}" size="32"
+input type="text" name="venue[town]" value="#{@venue.town}" size="32"
+br
+br
+
+label for="Kategorie" Kategorie auswählen und bestätigen
+- @categories.each do |category|
+  input.venue-category type="radio" name="category" value="#{category.id}" checked=(@venue.categories.include?(category))
+    = category.title
+  br
+br
+a.button.js-set-category href="#" Set Category
 br
 br

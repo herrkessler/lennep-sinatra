@@ -23,9 +23,28 @@ $(document).ready(function(){
   }
 
   function getMap(data) {
-    var venues = data[1];
+    var venues = data[0];
     var sessionUser = {};
-    // var sessionUser = data[0];
+
+    sessionUser.lat = '51.1925939';
+    sessionUser.lng = '7.2582474';
+    geojson.push(
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [sessionUser.lng,sessionUser.lat]
+        },
+        "properties": {
+          "title": "Hello you there",
+          "description": "Unbekannter Besucher",
+          "marker-color": "#354B60",
+          'marker-symbol': 'pitch',
+          "marker-size": "large",
+          "url": '#'
+        }
+      }
+    );
 
     $.each(venues, function(index, venue){
       geojson.push(
@@ -39,7 +58,7 @@ $(document).ready(function(){
             "title": venue.title,
             "description": venue.street +'<br/>'+venue.zip+' '+venue.town,
             "marker-color": "#fc4353",
-            'marker-symbol': 'building',
+            'marker-symbol': venue.category,
             "marker-size": "large",
             "url": '/venues/' + venue.id,
             "image" : venue.mainImage,
@@ -49,26 +68,7 @@ $(document).ready(function(){
       );
     });
 
-    sessionUser.lat = '51.1925939';
-    sessionUser.lng = '7.2582474';
-
-    // geojson.push(
-    //   {
-    //     "type": "Feature",
-    //     "geometry": {
-    //       "type": "Point",
-    //       "coordinates": [sessionUser.lng,sessionUser.lat]
-    //     },
-    //     "properties": {
-    //       "title": sessionUser.forname,
-    //       "description": sessionUser.forename,
-    //       "marker-color": "#354B60",
-    //       'marker-symbol': 'pitch',
-    //       "marker-size": "large",
-    //       "url": '/users/' + sessionUser.id
-    //     }
-    //   }
-    // );
+    console.log(geojson);
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVycmtlc3NsZXIiLCJhIjoiRGU5R0JVYyJ9.jrfMyYYLrHEQEeWircmkGA';
 

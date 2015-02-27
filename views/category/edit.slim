@@ -1,0 +1,8 @@
+.container
+  h1 Edit Category
+  hr
+  .edit-data
+    form.edit-form action="/categories/#{@category.id}" method="POST"
+      == slim :"category/form"
+      input type="hidden" name="_method" value="PUT"
+      input.button type="submit" value="Update Category"
