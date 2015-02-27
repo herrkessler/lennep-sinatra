@@ -8,6 +8,7 @@ require 'sinatra/flash'
 require 'sinatra/assetpack'
 require "sinatra/reloader"
 require 'sinatra-websocket'
+require 'sinatra/contrib'
 require 'will_paginate'
 require 'will_paginate/data_mapper'
 require 'json'
@@ -34,6 +35,7 @@ class Lennep < Sinatra::Base
 
   register Sinatra::Flash
   register Sinatra::AssetPack
+  register Sinatra::Contrib
 
   # -----------------------------------------------------------
   # Mandrill
@@ -156,7 +158,6 @@ class Lennep < Sinatra::Base
   # -----------------------------------------------------------
   # Routes
   # -----------------------------------------------------------
-
 
   require_relative 'routes/auth'
   require_relative 'routes/blog'

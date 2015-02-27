@@ -103,14 +103,14 @@ class Lennep < Sinatra::Base
         venue.categories << category
         venue.save
         venue.categories.save
-        return_data = [];
+        return_data = []
         return_data << venue
         halt 200, return_data.to_json
       else
         venue.categories << category
         venue.save
         venue.categories.save
-        return_data = [];
+        return_data = []
         return_data << venue
         halt 200, return_data.to_json
       end
@@ -121,14 +121,19 @@ class Lennep < Sinatra::Base
   end
 
   get '/venues/:id/add/:user' do
+
     env['warden'].authenticate!
     venue = Venue.get(params[:id])
     user = User.get(params[:user])
     user.venues << venue
     user.save
     user.venues.save
-    flash[:success] = 'POI: "' + venue.title + '" zu Deinen Favouriten hinzugefuegt'
-    redirect to("/venues/#{venue.id}")
+    if request.xhr?
+      halt 200
+    else
+      flash[:success] = 'POI: "' + venue.title + '" zu Deinen Favouriten hinzugefuegt'
+      redirect to("/venues/#{venue.id}")
+    end
   end
 
   get '/venues/:id/delete/:user' do
@@ -136,8 +141,12 @@ class Lennep < Sinatra::Base
     venue = Venue.get(params[:id])
     user = User.get(params[:user])
     UserVenue.all(:user_id => user.id, :venue_id => venue.id).destroy
-    flash[:success] = 'POI: "' + venue.title + '" aus Deinen Favouriten entfernt'
-    redirect to("/venues/#{venue.id}")
+    if request.xhr?
+      halt 200
+    else
+      flash[:success] = 'POI: "' + venue.title + '" aus Deinen Favouriten entfernt'
+      redirect to("/venues/#{venue.id}")
+    end
   end
 
 end

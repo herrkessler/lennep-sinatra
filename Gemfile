@@ -3,6 +3,7 @@ source "https://rubygems.org"
 
 gem 'sinatra', '~> 1.4.5'
 gem 'sinatra-reloader', '~> 1.0'
+gem 'sinatra-contrib', '~> 1.4.2'
 
 gem 'datamapper', '~> 1.2.0'
 gem 'dm-postgres-adapter', '~> 1.2.0'

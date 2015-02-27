@@ -3,7 +3,10 @@ $(document).ready(function(){
       mapWrapper = $('#map-wrapper'),
       venueWrapper = $('#venue-wrapper'),
       mapLink = $('#map-link'),
-      mapHeight = mapWrapper.outerHeight();
+      mapHeight = mapWrapper.outerHeight(),
+      venueCard = $('.venue'),
+      favouriteButton = $('.card-favourite-indicator'),
+      sessionUserId = $('body').data('id');
 
   listToggleButton.on('click', function(event){
     event.preventDefault();
@@ -26,6 +29,19 @@ $(document).ready(function(){
     }
     if (windowPosition < mapHeight) {
       mapLink.removeClass('active');
+    }
+  });
+
+  favouriteButton.on('click', function(event) {
+    var selectedVenue = $(this).closest('.venue').data('id');
+    if ($(this).hasClass('faved')) {
+      $(this).removeClass('faved');
+      $.get('/venues/'+selectedVenue+'/delete/'+sessionUserId, function() {
+      });
+    } else {
+      $(this).addClass('faved');
+      $.get('/venues/'+selectedVenue+'/add/'+sessionUserId, function() {
+      });
     }
   });
 });

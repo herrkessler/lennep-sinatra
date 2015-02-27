@@ -16,9 +16,8 @@ section#user
             == slim :"venue/venue", :locals => {venue: venue}
 
     - if @sessionUser.admin == true
-      br
-      br
-      .admin-bar
+      .border
+      .admin-button-wrapper
         form action="/users/#{@user.id}" method="POST"
           input type="hidden" name="_method" value="DELETE"
           input.button.admin type="submit" value="Delete THIS User"
