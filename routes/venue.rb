@@ -13,9 +13,7 @@ class Lennep < Sinatra::Base
   get '/venues-map', :provides => :json do
     @sessionUser = env['warden'].user
     venues = Venue.all.paginate(:page => params[:page], :per_page => 35)
-    return_data = [];
-    return_data << venues
-    halt 200, return_data.to_json
+    halt 200, venues.to_json(:relationships=>{:categories=>{}})
   end
 
   get '/venues/new' do

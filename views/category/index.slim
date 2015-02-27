@@ -4,7 +4,9 @@
     ul.admin-list
       - @categories.each do |category|
         li.admin-list-item
-          h4 = category.title
+          h4
+            i.maki-icon class="#{category.icon}"
+            span = category.title
           p = category.synopsis
           a.button href="/categories/#{category.id}" More
           a.button.admin href="/categories/#{category.id}/edit" EDIT

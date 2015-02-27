@@ -5,6 +5,8 @@ class Category
   property :title, String
   property :synopsis, Text
   property :slug, String
+  property :icon, String
+  property :colour, String
   property :created_at, DateTime, :lazy => [ :show ]
   property :update_at, DateTime, :lazy => [ :show ]
 

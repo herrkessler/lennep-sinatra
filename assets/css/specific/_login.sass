@@ -3,16 +3,22 @@
   background: url(../images/lennep.jpg) center center no-repeat
   background-size: cover
 
-#login-form
-  +total-center
-  width: 70%
+#login-form, #signup-form
+  width: 80%
   fieldset
     padding: 0
-  input[type=text], input[type=password]
+  input[type=text], input[type=password], input[type=email]
     width: 100%
     margin-bottom: $default-margin
-    border: 1px solid $dark-grey
+    border: 0
     padding: 12px
     background: white
     +placeholder
       color: black
+
+#login-form
+  +total-center
+
+#signup-form
+  margin-left: 10%
+  margin-top: 10%

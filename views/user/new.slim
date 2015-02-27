@@ -1,12 +1,13 @@
-#signup-form
-  form action="/users" method="POST"
-    fieldset
-      == slim :"user/new-form"
-    input.button.full.highlight.signup type="submit" value="Sign Up"
+section#login-wrapper
+  #login-form
+    form action="/users" method="POST"
+      fieldset
+        == slim :"user/new-form"
+      input.button.full.highlight.reversed.signup type="submit" value="Sign Up"
 
-  hr
-  p Or signup with: 
-  a.button.facebook href="" Facebook
-  a.button.twitter href="" Twitter
-  a.button.github href="" Github
-  a.button.google href="" Google+
+    hr
+    p Or signup with: 
+    a.button.facebook href="" Facebook
+    a.button.twitter href="" Twitter
+    a.button.github href="" Github
+    a.button.google href="" Google+

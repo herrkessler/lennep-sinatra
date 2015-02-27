@@ -23,7 +23,7 @@ $(document).ready(function(){
   }
 
   function getMap(data) {
-    var venues = data[0];
+    var venues = data;
     var sessionUser = {};
 
     sessionUser.lat = '51.1925939';
@@ -57,8 +57,8 @@ $(document).ready(function(){
           "properties": {
             "title": venue.title,
             "description": venue.street +'<br/>'+venue.zip+' '+venue.town,
-            "marker-color": "#fc4353",
-            'marker-symbol': "building",
+            "marker-color": venue.categories[0].colour,
+            'marker-symbol': venue.categories[0].icon,
             "marker-size": "large",
             "url": '/venues/' + venue.id,
             "image" : venue.mainImage,
@@ -67,8 +67,6 @@ $(document).ready(function(){
         }
       );
     });
-
-    console.log(geojson);
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVycmtlc3NsZXIiLCJhIjoiRGU5R0JVYyJ9.jrfMyYYLrHEQEeWircmkGA';
 

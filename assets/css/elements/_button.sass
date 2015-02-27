@@ -56,8 +56,11 @@ $map: (facebook: #3B5998, twitter: #55ACEE, google: #D73D32, github: silver)
     padding: 10px 0
   @each $profile, $color in $map
     &.#{$profile}
-      color: $color
+      background: $color
+      color: white
       border-color: $color
+      margin-right: 5px
       &:hover
-        background: $color
-        color: white
+        color: $color
+        border-color: $color
+        background: none
