@@ -9,6 +9,7 @@ function templateError(message){
 }
 
 function flash(message, type) {
+  $('#flash-message .container').find('p').remove();
   if (type == 'error') {
     $('#flash-message .container').append(templateError(message));
   }

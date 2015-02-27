@@ -2,3 +2,39 @@
   +media($mobile)
     width: 100%
     float: left
+
+#admin-area
+  margin-top: $default-margin*2
+  h1
+    font-size: 2em
+    font-weight: bold
+    margin-bottom: $default-margin*2
+
+.admin-list, .admin-button-wrapper, #admin-area, .admin-content-wrapper
+  +span-columns(12)
+  +omega
+
+.admin-content-wrapper
+  margin-bottom: $default-margin
+
+.admin-list-item
+  @extend %standardGrid 
+  margin-bottom: $default-margin*2
+  p
+    margin-bottom: $default-margin
+  h4
+    margin-bottom: $default-margin/2
+  .button
+    margin-right: $default-margin/2
+
+.border
+  width: 40%
+  height: 5px
+  background: black
+  float: left
+  margin-bottom: $default-margin
+
+.admin-button-wrapper
+  margin-bottom: $default-margin*6
+  .button
+    margin-right: $default-margin/2

@@ -1,6 +1,10 @@
-p = @category.id
-p = @category.title
-p = @category.slug
-p = @category.synopsis
+.container
+  #admin-area
+    .admin-content-wrapper
+      h1 = @category.title
+      p = @category.synopsis
 
-a.button href="/categories" Alle Kategorien
+    .border
+    .admin-button-wrapper
+      a.button.admin href="/categories/#{@category.id}/edit" EDIT
+      a.button href="/categories" Alle Kategorien

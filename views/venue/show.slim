@@ -35,10 +35,11 @@
           dt Longitude
           dd = @venue.location['lng']
 
-  a href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
-  br
-  br
-  a href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
+  - if @sessionUser
+    a href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
+    br
+    br
+    a href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
 
   section#admin-wrapper
     #admin

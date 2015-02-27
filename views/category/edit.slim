@@ -1,8 +1,13 @@
 .container
-  h1 Edit Category
-  hr
-  .edit-data
-    form.edit-form action="/categories/#{@category.id}" method="POST"
-      == slim :"category/form"
-      input type="hidden" name="_method" value="PUT"
-      input.button type="submit" value="Update Category"
+  #admin-area
+    .admin-content-wrapper
+      h1 = @category.title
+      .edit-data
+        form.edit-form action="/categories/#{@category.id}" method="POST"
+          == slim :"category/form"
+          input type="hidden" name="_method" value="PUT"
+          input.button type="submit" value="Update Category"
+
+    .border
+    .admin-button-wrapper
+      a.button href="/categories" Alle Kategorien

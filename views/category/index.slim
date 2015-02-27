@@ -1,9 +1,13 @@
 .container
-  - @categories.each do |category|
-    p = category.title
-    p = category.synopsis
-    a.button href="/categories/#{category.id}" Show Category
-    a.button href="/categories/#{category.id}/edit" Edit Category
-  br
-  br
-  a.button href="/categories/new" New Category
+  #admin-area
+    h1 Categories
+    ul.admin-list
+      - @categories.each do |category|
+        li.admin-list-item
+          h4 = category.title
+          p = category.synopsis
+          a.button href="/categories/#{category.id}" More
+          a.button.admin href="/categories/#{category.id}/edit" EDIT
+    .border
+    .admin-button-wrapper
+      a.button.admin href="/categories/new" NEW Category

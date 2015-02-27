@@ -58,44 +58,65 @@ class Lennep < Sinatra::Base
 
   get '/venues/:id/edit' do
     env['warden'].authenticate!
-    @venue = Venue.get(params[:id])
-    @categories = Category.all
-    slim :"venue/edit"
+    @sessionUser = env['warden'].user
+    if env['warden'].user.admin?
+      
+      @venue = Venue.get(params[:id])
+      @categories = Category.all
+      slim :"venue/edit"
+    else 
+      flash[:error] = 'Youre not the admin'
+      redirect to('/')
+    end
   end
 
   put '/venues/:id' do
     env['warden'].authenticate!
-    venue = Venue.get(params[:id])
-    venue.update(params[:venue])
-    if venue.saved?
-      flash[:success] = 'Venue update successful'
-      redirect to("/venues/#{venue.id}")
-    else
-      flash[:error] = 'Something went wrong'
-      redirect to("/venues/#{venue.id}/edit")
+    @sessionUser = env['warden'].user
+    if env['warden'].user.admin?
+      
+      venue = Venue.get(params[:id])
+      venue.update(params[:venue])
+      if venue.saved?
+        flash[:success] = 'Venue update successful'
+        redirect to("/venues/#{venue.id}")
+      else
+        flash[:error] = 'Something went wrong'
+        redirect to("/venues/#{venue.id}/edit")
+      end
+    else 
+      flash[:error] = 'Youre not the admin'
+      redirect to('/')
     end
   end
 
   get '/venues/:id/add/:category', :provides => :json do
     env['warden'].authenticate!
-    venue = Venue.get(params[:id])
-    category = Category.get(params[:category])
-    selectedCategory = CategoryVenue.all(:venue_id => venue.id)
-    if selectedCategory != []
-      selectedCategory.destroy
-      venue.categories << category
-      venue.save
-      venue.categories.save
-      return_data = [];
-      return_data << venue
-      halt 200, return_data.to_json
-    else
-      venue.categories << category
-      venue.save
-      venue.categories.save
-      return_data = [];
-      return_data << venue
-      halt 200, return_data.to_json
+    @sessionUser = env['warden'].user
+    if env['warden'].user.admin?
+      
+      venue = Venue.get(params[:id])
+      category = Category.get(params[:category])
+      selectedCategory = CategoryVenue.all(:venue_id => venue.id)
+      if selectedCategory != []
+        selectedCategory.destroy
+        venue.categories << category
+        venue.save
+        venue.categories.save
+        return_data = [];
+        return_data << venue
+        halt 200, return_data.to_json
+      else
+        venue.categories << category
+        venue.save
+        venue.categories.save
+        return_data = [];
+        return_data << venue
+        halt 200, return_data.to_json
+      end
+    else 
+      flash[:error] = 'Youre not the admin'
+      redirect to('/')
     end
   end
 
