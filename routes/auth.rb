@@ -12,7 +12,9 @@ class Lennep < Sinatra::Base
     if session[:return_to].nil?
       sessionUser = env['warden'].user
 
-      # flash[:success] = 'Hallo ' +sessionUser.forename+ ', du hast Dich erfolgreich eingeloggt.'
+      p sessionUser.update(:update_at => Time.now)
+
+      flash[:success] = 'Hallo ' +sessionUser.forename+ ', du hast Dich erfolgreich eingeloggt.'
       flash[:success] = env['warden'].message
       redirect to("/")
     else

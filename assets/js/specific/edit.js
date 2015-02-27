@@ -10,7 +10,7 @@ $(document).ready(function(){
         categoryID = venueCategorySelector.val();
 
     $.ajax({
-      url: '/venues/'+venueID+'/add/'+categoryID,
+      url: '/venues/'+venueID+'/addCategory/'+categoryID,
       dataType: 'json',
       contentType: 'application/json',
       type: 'GET',

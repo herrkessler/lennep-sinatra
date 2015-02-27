@@ -58,7 +58,7 @@ $(document).ready(function(){
             "title": venue.title,
             "description": venue.street +'<br/>'+venue.zip+' '+venue.town,
             "marker-color": "#fc4353",
-            'marker-symbol': venue.category,
+            'marker-symbol': "building",
             "marker-size": "large",
             "url": '/venues/' + venue.id,
             "image" : venue.mainImage,

@@ -90,7 +90,7 @@ class Lennep < Sinatra::Base
     end
   end
 
-  get '/venues/:id/add/:category', :provides => :json do
+  get '/venues/:id/addCategory/:category', :provides => :json do
     env['warden'].authenticate!
     @sessionUser = env['warden'].user
     if env['warden'].user.admin?
