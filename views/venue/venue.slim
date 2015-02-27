@@ -17,3 +17,5 @@ li.card.venue
       a.venue-name href="/venues/#{venue.id}" = venue.title
     p = truncate_words(venue.description, 40)
     a.button href="/venues/#{venue.id}" Mehr
+    - if @sessionUser && @sessionUser.admin == true
+      a.button.admin href="/venues/#{venue.id}/edit" EDIT
