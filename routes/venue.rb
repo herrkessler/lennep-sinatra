@@ -47,7 +47,7 @@ class Lennep < Sinatra::Base
     @sessionUser = env['warden'].user
     @venue = Venue.get(params[:id])
     if @venue != nil
-      slim :"venue/show"
+      slim :"venue/show", :layout => :layout_venue_show
     else
       flash[:error] = 'What you are looking for does not exist'
       redirect to("/venues")

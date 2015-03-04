@@ -6,8 +6,8 @@ html
     == css :application, :media => 'screen'
     link href="https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css" rel="stylesheet"
     == js :application
-    == js :map
-    
+    == js :venue
+
   body class=('index' if request.path == '/') class=(env['warden'].authenticated?  ? 'logged-in' : 'logged-out') data-id=(env['warden'].authenticated? ? @sessionUser.id : '')
 
     #flash-message

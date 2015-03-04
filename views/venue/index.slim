@@ -10,14 +10,18 @@ article#venue-search
               a.button.icon.white.js-find-on-map href="#"
                 i.fa.fa-user.fa-fw
                 span Find ME
-            li.map-navigation-list-item.filter
+            li.map-navigation-list-item
               a.button.white.js-filter-map-button href="#"
                 i.fa.fa-fw.fa-sort
                 span Filter Map
+            li.map-navigation-list-item.reset
+              a.button.icon.white.js-reset-filter-button href="#"
+                i.fa.fa-times.fa-fw
+                span Reset Filter
         ul.category-list
           - @categories.each do |category|
             li.category-list-item
-              a.button.white href="#" data-id="#{category.slug}"
+              a.button.white href="#" data-id="#{category.icon}"
                 = category.title
   section#venue-wrapper
     #venues

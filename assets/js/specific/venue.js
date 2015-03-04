@@ -51,7 +51,7 @@ $(document).ready(function(){
     });
   } else {
     if ($.cookie('favourites') === undefined){
-     $.cookie('favourites', '', { expires: 2 });
+     $.cookie('favourites', '', { expires: 2, path: '/' });
     } else {
       var venueList = $.cookie('favourites').split(/,/);
       $('.card').each(function(){
@@ -73,18 +73,19 @@ $(document).ready(function(){
           venueList = jQuery.grep(venueList, function(value) {
             return value != venueID;
           });
-          $.cookie('favourites', venueList);
+          $.cookie('favourites', venueList, { path: '/' });
           $(this).removeClass('faved');
         }
         else {
           venueList.push(venueID);
-          $.cookie('favourites', venueList);
+          $.cookie('favourites', venueList, { path: '/' });
           $(this).addClass('faved');
         }
 
       } else {
         modal.addClass('active');
-        $.cookie('favourites', venueID);
+        venueList.push(venueID);
+        $.cookie('favourites', venueList, { path: '/' });
         $(this).addClass('faved');
       }
     });

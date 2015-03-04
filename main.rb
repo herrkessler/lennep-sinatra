@@ -72,6 +72,10 @@ class Lennep < Sinatra::Base
       '/js/app.js',
     ]
 
+    js :venue, [
+      '/js/specific/venue_show.js'
+    ]
+
     js :map, [
       '/js/vendor/mapbox.js',
       '/js/specific/map.js',

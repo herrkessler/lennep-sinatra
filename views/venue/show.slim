@@ -1,7 +1,7 @@
 .container
   - @venue.categories.each do |category|
     p = category.title
-  #venue-profile
+  #venue-profile data-id=@venue.id
     h1 = @venue.title
     hr
     #venue-description
@@ -40,6 +40,9 @@
       a.button href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
     - else
       a.button href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
+  - else 
+      a.button.js-venue-faved-button href="#" Zu meinen Favouriten hinzufügen
+
 
   section#admin-wrapper
     #admin
