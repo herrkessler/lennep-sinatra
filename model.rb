@@ -7,10 +7,10 @@ require "gravatarify"
 
 # DataMapper::Logger.new($stdout, :debug)
 DataMapper::Model.raise_on_save_failure = true 
-DataMapper::setup(:default, "postgres:lennepMap")
+# DataMapper::setup(:default, "postgres:lennepMap")
 
 # :production
-#   DataMapper::setup(:default, ENV["HEROKU_POSTGRESQL_IVORY_URL"] || "postgres://gdvmfswxmmbcvb:wN5vnndqzGC3oJw5icH7Q_PL_A@ec2-107-20-191-205.compute-1.amazonaws.com/dbnt3lljncbi21")
+DataMapper::setup(:default, ENV["HEROKU_POSTGRESQL_IVORY_URL"] || "postgres://lpgonkfzpqtzra:qzmoEyeZ_xAeQnXdlUMnztMPl1@ec2-107-21-102-69.compute-1.amazonaws.com/dflo4qtaut1i4m")
 
 # -----------------------------------------------------------
 # Model and Associations
