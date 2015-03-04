@@ -9,6 +9,7 @@ require 'sinatra/assetpack'
 require "sinatra/reloader"
 require 'sinatra-websocket'
 require 'sinatra/contrib'
+require "sinatra/cookies"
 require 'will_paginate'
 require 'will_paginate/data_mapper'
 require 'json'
@@ -143,6 +144,7 @@ class Lennep < Sinatra::Base
 
   helpers WillPaginate::Sinatra::Helpers
   helpers Gravatarify::Helper
+  helpers Sinatra::Cookies
 
   helpers do
     def paginate(collection)

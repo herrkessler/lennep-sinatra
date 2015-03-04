@@ -24,6 +24,7 @@ class Lennep < Sinatra::Base
   post '/users' do
 
     data = params[:user]
+    cookieVenues = cookies[:favourites]
 
     if data[:username].empty? or data[:email].empty? or data[:password].empty?
       flash[:error] = 'Something was missing'
@@ -34,6 +35,16 @@ class Lennep < Sinatra::Base
     else
       data = data.except('repeated_password')
       @user = User.create(data)
+
+      # Add Favourites from JSsession
+
+      reqVenues = cookieVenues.split(",").map { |s| s.to_i }
+      @venues = Venue.all(:id => reqVenues)
+      @user.venues.concat(@venues)
+      @user.save
+      @user.venues.save
+
+      cookies[:favourites] = ''
 
       if @user.saved?
 
@@ -57,8 +68,9 @@ class Lennep < Sinatra::Base
 
         # Redirect to login
 
-        flash[:new_user] = 'Hallo ' + @user.forename + ', du brauchst noch etwas Geduld'
+        flash[:new_user] = 'Hallo ' + @user.forename + ', du kannst Dich nun einloggen'
         redirect to("/auth/login")
+
 
       else
 
