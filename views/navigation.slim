@@ -12,6 +12,11 @@ nav#main-navigation
       li.main-navigation-list-item.mobile
         i.fa.fa-bars.fa-fw.js-mobile-menu-link
       - if !@sessionUser
+        li.main-navigation-list-item.favourites.js-favourites-link
+          a href="/favourites" Favouriten
+          span.favourites-counter
+        li.main-navigation-list-item.signup
+          a.button.highlight.reversed.secondary href="/users/new" signup
         li.main-navigation-list-item.login
           a.button.highlight.reversed href="/auth/login" login
       - else
@@ -35,15 +40,20 @@ nav#mobile-navigation
     li.mobile-navigation-list-item.poi
       a href="/venues" Karte
     - if !@sessionUser
-      li.mobile-navigation-list-item.login
+      li.mobile-navigation-list-item.favourites.js-favourites-link
+        a href="/favourites" Favouriten
+        span.favourites-counter
+      li.mobile-navigation-list-item.login.highlight
         a href="/auth/login" login
+      li.mobile-navigation-list-item.signup.secondary
+        a href="/users/new" signup
     - else 
       - if @sessionUser.admin
         li.mobile-navigation-list-item.user.admin
           a href="/users" user
         li.mobile-navigation-list-item.category.admin
           a href="/categories" category
-      li.mobile-navigation-list-item.logout
+      li.mobile-navigation-list-item.logout.highlight
         a href="/auth/logout" logout
       li.mobile-navigation-list-item.dash
         a href="/users/#{@sessionUser.id}"

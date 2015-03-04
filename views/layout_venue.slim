@@ -31,3 +31,23 @@ html
     #map-link
       a href="#main-navigation"
         i.fa.fa-arrow-circle-up
+
+    #modal-wrapper
+      #modal
+        section.login
+          p Logge Dich ein:
+          a.button.reversed.full.white href="/auth/login" Login
+        section.signup
+          p 
+            | Noch keinen Account? 
+            br 
+            | Dann hier anmelden:
+          a.button.reversed.highlight.full href="/users/new" SignUp
+        hr
+        section.continue
+          p 
+            | Oder ohne Account fortfahren. 
+            br
+            | Die Favouriten bleiben zwei Tage gespeichert.
+          a.button.ghost.highlight.full#continue href="#" Weiter gehts
+

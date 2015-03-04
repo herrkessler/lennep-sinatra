@@ -1,6 +1,8 @@
-h1 New Post
-hr
-br
-form.new-post-form action="/blog" method="POST"
-  == slim :"post/form"
-  input.button type="submit" value="Publish Post"
+.container
+  #post-wrapper
+    h1 New Post
+    hr
+    br
+    form.new-post-form action="/blog" method="POST"
+      == slim :"post/form"
+      input.button type="submit" value="Publish Post"

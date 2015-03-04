@@ -23,8 +23,8 @@ $map: (facebook: #3B5998, twitter: #55ACEE, google: #D73D32, github: silver)
   @extend %button
   &.reversed
     background: black
+    border-color: black
     color: white
-    border-color: white
   &.white
     color: white
     border-color: white
@@ -36,14 +36,22 @@ $map: (facebook: #3B5998, twitter: #55ACEE, google: #D73D32, github: silver)
     color: $highlight
     border-color: $highlight
     &:hover
-      color: grey
-      border-color: grey
+      color: white
+      border-color: white
     &.reversed
       color: white
       border-color: $highlight
       background: $highlight
-      &:hover
-        color: white
+  &.secondary
+    color: $secondary
+    border-color: $secondary
+    &:hover
+      color: white
+      border-color: white
+    &.reversed
+      color: white
+      border-color: $secondary
+      background: $secondary
   &.admin
     border-color: $admin
     color: $admin
@@ -54,6 +62,7 @@ $map: (facebook: #3B5998, twitter: #55ACEE, google: #D73D32, github: silver)
     display: block
     width: 100%
     padding: 10px 0
+    text-align: center
   @each $profile, $color in $map
     &.#{$profile}
       background: $color

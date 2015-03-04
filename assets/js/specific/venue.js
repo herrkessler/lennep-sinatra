@@ -6,7 +6,11 @@ $(document).ready(function(){
       mapHeight = mapWrapper.outerHeight(),
       venueCard = $('.venue'),
       favouriteButton = $('.card-favourite-indicator'),
-      sessionUserId = $('body').data('id');
+      sessionUserId = $('body').data('id'),
+      sessionUserStatus = $('body').hasClass('logged-in'),
+      initialCookie = $.cookie('favs'),
+      modal = $('#modal-wrapper'),
+      continueButton = $('#continue');
 
   listToggleButton.on('click', function(event){
     event.preventDefault();
@@ -32,16 +36,63 @@ $(document).ready(function(){
     }
   });
 
-  favouriteButton.on('click', function(event) {
-    var selectedVenue = $(this).closest('.venue').data('id');
-    if ($(this).hasClass('faved')) {
-      $(this).removeClass('faved');
-      $.get('/venues/'+selectedVenue+'/delete/'+sessionUserId, function() {
-      });
+  if (sessionUserStatus) {
+    favouriteButton.on('click', function(event) {
+      var selectedVenue = $(this).closest('.venue').data('id');
+      if ($(this).hasClass('faved')) {
+        $(this).removeClass('faved');
+        $.get('/venues/'+selectedVenue+'/delete/'+sessionUserId, function() {
+        });
+      } else {
+        $(this).addClass('faved');
+        $.get('/venues/'+selectedVenue+'/add/'+sessionUserId, function() {
+        });
+      }
+    });
+  } else {
+    if ($.cookie('favourites') === undefined){
+     $.cookie('favourites', '', { expires: 2 });
     } else {
-      $(this).addClass('faved');
-      $.get('/venues/'+selectedVenue+'/add/'+sessionUserId, function() {
+      var venueList = $.cookie('favourites').split(/,/);
+      $('.card').each(function(){
+        if ($.inArray($(this).attr('data-id'),venueList) != -1) {
+          $(this).find('.card-favourite-indicator').addClass('faved');
+        }
       });
     }
+
+    favouriteButton.on('click', function(event) {
+      event.preventDefault();
+
+      var venueID = $(this).closest('.card').data('id') ;
+      var venueList = $.cookie('favourites').split(/,/);
+
+      if ($.cookie('favourites') !== "") {
+
+        if ($(this).hasClass('faved')) {
+          venueList = jQuery.grep(venueList, function(value) {
+            return value != venueID;
+          });
+          $.cookie('favourites', venueList);
+          $(this).removeClass('faved');
+        }
+        else {
+          venueList.push(venueID);
+          $.cookie('favourites', venueList);
+          $(this).addClass('faved');
+        }
+
+      } else {
+        modal.addClass('active');
+        $.cookie('favourites', venueID);
+        $(this).addClass('faved');
+      }
+    });
+  }
+
+  continueButton.on('click', function(event){
+    event.preventDefault();
+    modal.removeClass('active');
   });
+
 });

@@ -1,12 +1,14 @@
 section#login-wrapper
-  #login-form
+  #signup-form
     form action="/users" method="POST"
       fieldset
         == slim :"user/new-form"
-      input.button.full.highlight.reversed.signup type="submit" value="Sign Up"
+      input.button.full.highlight.reversed.signup.secondary type="submit" value="Sign Up"
 
     hr
+    br
     p Or signup with: 
+    br
     a.button.facebook href="" Facebook
     a.button.twitter href="" Twitter
     a.button.github href="" Github

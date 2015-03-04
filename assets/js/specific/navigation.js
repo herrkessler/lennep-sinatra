@@ -3,7 +3,8 @@ $(document).ready(function(){
       mobileNav = $('#mobile-navigation'),
       indexLink = $('.main-navigation-list-item.index'),
       filterMapButton = $('.js-filter-map-button'),
-      mapNavigation = $('#map-navigation');
+      mapNavigation = $('#map-navigation'),
+      favLink = $('.js-favourites-link a');
 
   mobileNavButton.on('click', function(){
     if ($(this).hasClass('active')) {
@@ -27,4 +28,14 @@ $(document).ready(function(){
       mapNavigation.addClass('active');
     }
   });
+
+  favLink.on('click', function(event){
+    event.preventDefault();
+    event.preventDefault();
+    var favs = $.cookie('favourites');
+    var host = window.location.host;
+    var newUrl = 'http://'+host+'/favourites?favs='+favs;
+    window.location.assign(newUrl);
+  });
+
 });

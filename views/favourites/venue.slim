@@ -1,0 +1,20 @@
+li.card.venue data-id=venue.id
+  .card-avatar
+    .card-avatar-inner
+      .car-avatar-image-wrapper
+        - if venue.gallery.length != 0
+          img src="#{venue.gallery.first}"
+        - else
+            img src="/images/site.jpg"
+        .card-favourite-indicator.faved
+          i.fa.fa-heart
+      - venue.categories.each do |category|
+        .maki-icon-wrapper style="background-color:#{category.colour}"
+          i.maki-icon.white class="#{category.icon}"
+  .card-content
+    h4
+      a.venue-name href="/venues/#{venue.id}" = venue.title
+    p = truncate_words(venue.description, 40)
+    a.button href="/venues/#{venue.id}" Mehr
+    - if @sessionUser && @sessionUser.admin == true
+      a.button.admin href="/venues/#{venue.id}/edit" EDIT

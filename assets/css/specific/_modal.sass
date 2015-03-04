@@ -1,0 +1,18 @@
+#modal-wrapper
+  display: none
+  background: rgba(black, 0.9)
+  +cover-all
+  z-index: 999999
+  &.active
+    display: block
+
+#modal
+  +total-center
+
+  section
+    p 
+      color: white
+      line-height: 1.4
+      margin-bottom: $default-margin
+    margin-bottom: $default-margin*2
+    width: 300px

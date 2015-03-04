@@ -7,9 +7,14 @@ section#login-wrapper
        div = flash[:new_user]
     form action="/auth/login" method="POST" 
       fieldset
-        label.required Username:
         input.required name="user[username]" type="text" placeholder="username *"
         br
-        label.required Passwort:
         input.required name="user[password]" type="password" placeholder="passwort *"
-      input.button.full.highlight.reversed type="submit" value=("Einloggen")
+      fieldset
+        input.button.full.highlight.reversed type="submit" value=("Einloggen")
+    br
+    hr
+    br
+    p Noch keinen Account?
+    br
+    a.button.full.highlight.secondary href="/users/new" Signup

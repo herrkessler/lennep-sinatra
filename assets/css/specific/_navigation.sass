@@ -9,7 +9,7 @@
 .main-navigation-list-item
   display: inline
   margin-right: $default-margin
-  &.login, &.logout, &.dash, &.mobile
+  &.login, &.logout, &.dash, &.mobile, &.signup
     float: right
     margin-right: 0
     margin-left: $default-margin
@@ -22,11 +22,14 @@
   &.mobile
     display: none
     color: white
+  &.login, &.logout, &.signup
+    a
+      margin-top: -11px
   &.admin
     a
-      color: $highlight!important
+      color: $dark-red!important
   +media($mobile)
-    &.tour, &.blog, &.poi, &.user, &.category
+    &.tour, &.blog, &.poi, &.user, &.category, &.favourites
       display: none
     &.mobile
       display: block
@@ -38,7 +41,7 @@
 #mobile-navigation
   +cover-all
   z-index: -1
-  background: rgba(black, 0.8)
+  background: rgba(black, 0.9)
   opacity: 0
   +transition(opacity .3s)
   &.active
@@ -59,9 +62,15 @@
     color: white
     font-size: 1.2em
     font-weight: bold
-  &.admin
+  &.highlight
     a
       color: $highlight!important
+  &.secondary
+    a
+      color: $secondary!important
+  &.admin
+    a
+      color: $dark-red!important
 
 .js-mobile-menu-link
   &.active

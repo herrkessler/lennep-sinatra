@@ -64,6 +64,7 @@ class Lennep < Sinatra::Base
 
     js :application, [
       '/js/lib/jquery-2.1.3.js',
+      '/js/vendor/jquery.cookie.js',
       '/js/specific/socket.js',
       '/js/specific/navigation.js',
       '/js/specific/edit.js',
@@ -166,5 +167,6 @@ class Lennep < Sinatra::Base
   require_relative 'routes/user'
   require_relative 'routes/venue'
   require_relative 'routes/category'
+  require_relative 'routes/favs'
 
 end

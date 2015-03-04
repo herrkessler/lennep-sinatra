@@ -1,0 +1,18 @@
+section#user
+  .container
+    h1 Favouriten
+    hr
+    - if @venues.length > 0
+      #venues
+        ul.venues
+          - @venues.each do |venue|
+            == slim :"favourites/venue", :locals => {venue: venue}
+      .back-link-wrapper
+        p 
+          | Zurück zur 
+          a.button.reversed href="/venues" Karte? 
+    - else 
+      #venues
+        p 
+          | Du hast noch keine Favouriten, zurück zur 
+          a.button.reversed href="/venues" Karte? 
