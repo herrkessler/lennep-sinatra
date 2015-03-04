@@ -26,10 +26,10 @@ nav#main-navigation
             - if @sessionUser.venues.length > 0
               = @sessionUser.venues.length
         - if @sessionUser.admin
-          li.main-navigation-list-item.user.admin
-            a href="/users" user
-          li.main-navigation-list-item.category.admin
-            a href="/categories" category
+          li.main-navigation-list-item.user
+            a.button.admin href="/users" user
+          li.main-navigation-list-item.category
+            a.button.admin href="/categories" category
         li.main-navigation-list-item.logout
           a.button.highlight.reversed href="/auth/logout" logout
         li.main-navigation-list-item.dash

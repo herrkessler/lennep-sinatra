@@ -41,9 +41,10 @@ article#venue-search
       a.button.white.js-toggle-map-view.toggle-map-view href="#"
         i.fa.fa-list.fa-fw
 
-  section#admin-wrapper
-    #admin
+  - if @sessionUser && @sessionUser.admin == true
+    section#admin-wrapper
       .container
-        - if @sessionUser && @sessionUser.admin == true
+        .border
+        #admin
           .admin-bar
             a.button.admin href="/venues/new" Add NEW venue

@@ -49,8 +49,9 @@
 
 
   section#admin-wrapper
+    .border
     #admin
-      .container
-        - if @sessionUser && @sessionUser.admin == true
-          .admin-bar
-            a.button.admin href="/venues/#{@venue.id}/edit" Edit THIS venue
+      - if @sessionUser && @sessionUser.admin == true
+        .admin-bar
+          a.button.admin href="/venues/#{@venue.id}/edit" Edit THIS venue
+          a.button.admin href="/venues/new" Add NEW venue

@@ -1,7 +1,7 @@
-#admin-wrapper
-  +media($mobile)
-    width: 100%
-    float: left
+#admin-wrapper, #admin
+  margin: $default-margin 0
+  width: 100%
+  float: left
 
 #admin-area
   margin-top: $default-margin*2
@@ -23,7 +23,7 @@
   p
     margin-bottom: $default-margin
   h4
-    font-weight: normal
+    font-weight: bold
     margin-bottom: $default-margin/2
     span
       line-height: 24px
@@ -46,3 +46,7 @@
   margin-bottom: $default-margin*6
   .button
     margin-right: $default-margin/2
+
+.admin-bar
+  .button
+    margin-right: $default-margin

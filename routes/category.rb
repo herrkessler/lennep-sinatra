@@ -50,6 +50,7 @@ class Lennep < Sinatra::Base
   get '/categories/:id/edit' do
     env['warden'].authenticate!
     if env['warden'].user.admin?
+      @sessionUser = env['warden'].user
       @category = Category.get(params[:id])
       slim :"category/edit"
     else
@@ -61,6 +62,7 @@ class Lennep < Sinatra::Base
   put '/categories/:id' do
     env['warden'].authenticate!
     if env['warden'].user.admin?
+      @sessionUser = env['warden'].user
       category = Category.get(params[:id])
       category.update(params[:category])
       if category.saved?
