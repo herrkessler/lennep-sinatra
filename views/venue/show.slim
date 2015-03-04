@@ -37,9 +37,13 @@
 
   - if @sessionUser
     - if @sessionUser.venues.include?(@venue)
-      a.button href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" Aus meinen Favouriten entfernen
+      a.button.icon href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" 
+        i.fa.fa-times.fa-fw
+        span Aus meinen Favouriten entfernen
     - else
-      a.button href="/venues/#{@venue.id}/add/#{@sessionUser.id}" Zu meinen Favouriten hinzufügen
+      a.button.icon href="/venues/#{@venue.id}/add/#{@sessionUser.id}"
+        i.fa.fa-heart.fa-fw
+        span Zu meinen Favouriten hinzufügen
   - else 
       a.button.js-venue-faved-button href="#" Zu meinen Favouriten hinzufügen
 

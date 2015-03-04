@@ -8,9 +8,9 @@ li.card.venue data-id=venue.id
             img src="/images/site.jpg"
         .card-favourite-indicator.faved
           i.fa.fa-heart
-      - venue.categories.each do |category|
-        .maki-icon-wrapper style="background-color:#{category.colour}"
-          i.maki-icon.white class="#{category.icon}"
+      / - venue.categories.each do |category|
+      /   .maki-icon-wrapper style="background-color:#{category.colour}"
+      /     i.maki-icon.white class="#{category.icon}"
   .card-content
     h4
       a.venue-name href="/venues/#{venue.id}" = venue.title
