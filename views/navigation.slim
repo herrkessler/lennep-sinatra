@@ -14,12 +14,17 @@ nav#main-navigation
       - if !@sessionUser
         li.main-navigation-list-item.favourites.js-favourites-link
           a href="/favourites" Favouriten
-          span.favourites-counter
+          span.favourite-counter
         li.main-navigation-list-item.signup
           a.button.highlight.reversed.secondary href="/users/new" signup
         li.main-navigation-list-item.login
           a.button.highlight.reversed href="/auth/login" login
       - else
+        li.main-navigation-list-item.favourites
+          a href="/users/#{@sessionUser.id}" Favouriten
+          span.favourite-counter class=('active' if @sessionUser.venues.length > 0)
+            - if @sessionUser.venues.length > 0
+              = @sessionUser.venues.length
         - if @sessionUser.admin
           li.main-navigation-list-item.user.admin
             a href="/users" user

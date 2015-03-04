@@ -9,6 +9,7 @@
 .main-navigation-list-item
   display: inline
   margin-right: $default-margin
+  position: relative
   &.login, &.logout, &.dash, &.mobile, &.signup
     float: right
     margin-right: 0
@@ -78,3 +79,18 @@
   &.active
     z-index: 99999
     position: relative
+
+.favourite-counter
+  position: absolute
+  top: -9px
+  right: -16px
+  color: white
+  +size(15px)
+  border-radius: 50%
+  text-align: center
+  line-height: 19px
+  font-size: 12px
+  font-weight: bold
+  display: inline-block
+  &.active
+    background: $highlight

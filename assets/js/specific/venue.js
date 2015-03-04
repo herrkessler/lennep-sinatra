@@ -41,10 +41,12 @@ $(document).ready(function(){
       var selectedVenue = $(this).closest('.venue').data('id');
       if ($(this).hasClass('faved')) {
         $(this).removeClass('faved');
+        updateFavs("remove");
         $.get('/venues/'+selectedVenue+'/delete/'+sessionUserId, function() {
         });
       } else {
         $(this).addClass('faved');
+        updateFavs("add");
         $.get('/venues/'+selectedVenue+'/add/'+sessionUserId, function() {
         });
       }
@@ -75,11 +77,13 @@ $(document).ready(function(){
           });
           $.cookie('favourites', venueList, { path: '/' });
           $(this).removeClass('faved');
+          updateFavs("remove");
         }
         else {
           venueList.push(venueID);
           $.cookie('favourites', venueList, { path: '/' });
           $(this).addClass('faved');
+          updateFavs("add");
         }
 
       } else {
@@ -87,6 +91,7 @@ $(document).ready(function(){
         venueList.push(venueID);
         $.cookie('favourites', venueList, { path: '/' });
         $(this).addClass('faved');
+        updateFavs("add");
       }
     });
   }

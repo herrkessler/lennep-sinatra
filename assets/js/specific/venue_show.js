@@ -26,17 +26,20 @@ $(document).ready(function(){
           return value != venueID;
         });
         $.cookie('favourites', venueList, { path: '/' });
+        updateFavs("remove");
         $(this).removeClass('faved').text('Zu meinen Favouriten hinzufügen');
       }
       else {
         venueList.push(venueID);
         $.cookie('favourites', venueList, { path: '/' });
+        updateFavs("add");
         $(this).addClass('faved').text('Aus meinen Favouriten entfernen');
       }
 
     } else {
       modal.addClass('active');
       $.cookie('favourites', venueID, { path: '/' });
+      updateFavs("add");
       $(this).addClass('faved').text('Aus meinen Favouriten entfernen');
     }
   });
