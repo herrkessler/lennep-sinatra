@@ -14,6 +14,49 @@
   +media($mobile)
     margin-bottom: $default-margin
 
+#venue
+  margin-top: $default-margin*2
+  +media($mobile)
+    margin-bottom: $default-margin
+
+#venue-description
+  +span-columns(12)
+  +omega
+  margin-bottom: $default-margin
+
+#venue-gallery, #venue-info
+  +span-columns(6)
+  +omega(2n)
+  margin-bottom: $default-margin
+  +media($mobile)
+    +span-columns(12)
+    +omega
+
+#venue-main-image
+  margin-bottom: $default-margin/2
+  background: black
+
+#venue-hero-image
+  display: block
+  width: 100%
+  max-width: 100%
+
+.venue-gallery-list
+  +span-columns(12)
+  +omega
+
+.venue-gallery-list-item
+  +span-columns(3)
+  +omega(4n)
+  margin-bottom: $default-margin/2
+  border: 1px solid transparent
+  cursor: pointer
+  +transition(border-color 0.3s ease-out)
+  img
+    display: block
+  &.selected
+    border: 1px solid white
+
 #venue-search
   +size(100%)
   +media($mobile)
@@ -28,6 +71,25 @@
     bottom: 0
     left: 0
     right: 0
+
+#venue-main-image
+  position: relative
+
+#venue-gallery-nav
+  +vertical-center
+  width: 100%
+
+.venue-gallery-nav
+  cursor: pointer
+  color: white
+  &.left
+    float: left
+    margin-left: $default-margin/2
+  &.right
+    float: right
+    margin-right: $default-margin/2
+  &.last
+    display: none
 
 .maki-icon-wrapper
   +horizontal-center

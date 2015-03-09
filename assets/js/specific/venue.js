@@ -37,6 +37,7 @@ $(document).ready(function(){
   });
 
   if (sessionUserStatus) {
+    console.log('Session');
     favouriteButton.on('click', function(event) {
       var selectedVenue = $(this).closest('.venue').data('id');
       if ($(this).hasClass('faved')) {

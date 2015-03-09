@@ -71,6 +71,7 @@ class Lennep < Sinatra::Base
       '/js/specific/edit.js',
       '/js/specific/flash.js',
       '/js/specific/fav_counter.js',
+      '/js/specific/slider.js',
       '/js/app.js',
     ]
 

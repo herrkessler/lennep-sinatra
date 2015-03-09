@@ -1,57 +1,56 @@
 .container
-  - @venue.categories.each do |category|
-    p = category.title
-  #venue-profile data-id=@venue.id
-    h1 = @venue.title
-    hr
-    #venue-description
-      #venue-gallery
-        #venue-main-image
-          #venue-gallery-nav
-            .venue-gallery-nav.left.last
-              i.fa.fa-arrow-circle-o-left
-            .venue-gallery-nav.right
-              i.fa.fa-arrow-circle-o-right
-          img#venue-hero-image src="/images/#{@venue.gallery.first}"
-        ul.venue-gallery-list
-          - @venue.gallery.each_with_index do |image,index|
-            li.venue-gallery-list-item data-id=index+1 class=('selected' if index == 0)
-              img src="/images/#{image}"
-      #venue-info
-        h2 = @venue.title
-        p = @venue.street
-        p = @venue.zip
-        p = @venue.town
-        br
-        p = @venue.description
-        br
-        p = @venue.url
+  #venue
 
-        dl#venue-facts
+    #venue-profile data-id=@venue.id
+      h1 = @venue.title
+      - @venue.categories.each do |category|
+        p = category.title
+      hr
 
-          dt Latitude
-          dd = @venue.location['lat']
-          
-          dt Longitude
-          dd = @venue.location['lng']
+      #venue-description
+        #venue-gallery
+          #venue-main-image
+            #venue-gallery-nav
+              .venue-gallery-nav.left.last
+                i.fa.fa-arrow-circle-o-left
+              .venue-gallery-nav.right
+                i.fa.fa-arrow-circle-o-right
+            img#venue-hero-image src="#{@venue.gallery.first}"
+          ul.venue-gallery-list
+            - @venue.gallery.each_with_index do |image, index|
+              li.venue-gallery-list-item data-id=index+1 class=('selected' if index == 0)
+                img src="#{image}"
 
-  - if @sessionUser
-    - if @sessionUser.venues.include?(@venue)
-      a.button.icon href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" 
-        i.fa.fa-times.fa-fw
-        span Aus meinen Favouriten entfernen
-    - else
-      a.button.icon href="/venues/#{@venue.id}/add/#{@sessionUser.id}"
-        i.fa.fa-heart.fa-fw
-        span Zu meinen Favouriten hinzufügen
-  - else 
-      a.button.js-venue-faved-button href="#" Zu meinen Favouriten hinzufügen
+        #venue-info
+          h2 = @venue.title
+          p = @venue.street
+          p = @venue.zip
+          p = @venue.town
+          br
+          p = @venue.description
+          br
+          p
+            a href="#{@venue.url}" target='_blank'
+              = @venue.url
 
 
-  section#admin-wrapper
-    .border
-    #admin
-      - if @sessionUser && @sessionUser.admin == true
-        .admin-bar
-          a.button.admin href="/venues/#{@venue.id}/edit" Edit THIS venue
-          a.button.admin href="/venues/new" Add NEW venue
+    - if @sessionUser
+      - if @sessionUser.venues.include?(@venue)
+        a.button.icon href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" 
+          i.fa.fa-times.fa-fw
+          span Aus meinen Favouriten entfernen
+      - else
+        a.button.icon href="/venues/#{@venue.id}/add/#{@sessionUser.id}"
+          i.fa.fa-heart.fa-fw
+          span Zu meinen Favouriten hinzufügen
+    - else 
+        a.button.js-venue-faved-button href="#" Zu meinen Favouriten hinzufügen
+
+
+    - if @sessionUser && @sessionUser.admin == true
+      section#admin-wrapper
+        .border
+        #admin
+          .admin-bar
+            a.button.admin href="/venues/#{@venue.id}/edit" Edit THIS venue
+            a.button.admin href="/venues/new" Add NEW venue

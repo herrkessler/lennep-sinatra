@@ -8,7 +8,7 @@ html
     == js :application
     == js :map
     
-  body class=('index' if request.path == '/') class=(env['warden'].authenticated?  ? 'logged-in' : 'logged-out') data-id=(env['warden'].authenticated? ? @sessionUser.id : '')
+  body.venue class=('index' if request.path == '/') class=(env['warden'].authenticated?  ? 'logged-in' : 'logged-out') data-id=(env['warden'].authenticated? ? @sessionUser.id : '')
 
     #flash-message
       .container
