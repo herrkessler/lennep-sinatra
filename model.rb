@@ -6,11 +6,11 @@ require "gravatarify"
 # -----------------------------------------------------------
 
 # DataMapper::Logger.new($stdout, :debug)
-DataMapper::Model.raise_on_save_failure = true 
-DataMapper::setup(:default, "postgres:lennepMap")
+# DataMapper::Model.raise_on_save_failure = true 
+# DataMapper::setup(:default, "postgres:lennepMap")
 
 # :production
-# DataMapper::setup(:default, ENV["HEROKU_POSTGRESQL_IVORY_URL"] || "postgres://lpgonkfzpqtzra:qzmoEyeZ_xAeQnXdlUMnztMPl1@ec2-107-21-102-69.compute-1.amazonaws.com/dflo4qtaut1i4m")
+DataMapper::setup(:default, ENV["HEROKU_POSTGRESQL_IVORY_URL"] || "postgres://lpgonkfzpqtzra:qzmoEyeZ_xAeQnXdlUMnztMPl1@ec2-107-21-102-69.compute-1.amazonaws.com/dflo4qtaut1i4m")
 
 # -----------------------------------------------------------
 # Model and Associations
