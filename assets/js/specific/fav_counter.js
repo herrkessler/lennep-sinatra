@@ -1,20 +1,22 @@
-$(document).ready(function(){
+$(document).ready(function() {
   initialFavs();
 });
 
 function initialFavs() {
-  if ($.cookie('favourites') === undefined){
+  if ($.cookie('favourites') === undefined) {
     $.cookie('favourites', '', { expires: 2, path: '/' });
   }
 
   var favCounter = $('.favourite-counter'),
-      cookieCounter = ($.cookie('favourites').split(/,/).length)-1,
-      sessionUserStatus = $('body').hasClass('logged-in');
+      cookieCounter = ($.cookie('favourites').split(/,/).length),
+      sessionUserStatus = $('body').hasClass('logged-in'),
+      controlFavs = $.cookie('favourites').split(/,/);
 
   if (sessionUserStatus) {
+    // Do nothing ;-)
   } else {
 
-    if (cookieCounter > 0) {
+    if (controlFavs[0] !== "") {
       favCounter.text(cookieCounter);
       favCounter.addClass('active');
     } else {
@@ -26,24 +28,37 @@ function initialFavs() {
 
 function updateFavs(type) {
   var favCounter = $('.favourite-counter'),
-      cookieCounter = ($.cookie('favourites').split(/,/).length)-1,
+      cookieCounter = ($.cookie('favourites').split(/,/).length),
       sessionUserStatus = $('body').hasClass('logged-in'),
-      initialCount = parseInt(favCounter.text());
+      initialCount = parseInt(favCounter.text()),
+      controlFavs = $.cookie('favourites').split(/,/);
 
   if (sessionUserStatus) {
     if (type == "add") {
-      favCounter.text(initialCount+1);
+      favCounter.addClass('active');
+      if (isNaN(initialCount)) {
+        favCounter.text("1");
+      } else {
+        favCounter.text(initialCount + 1);
+      }
     }
+
     if (type == "remove" && initialCount > 0) {
-      favCounter.text(initialCount-1);
+      favCounter.text(initialCount - 1);
+    } 
+
+    if (type == "remove" && initialCount == 1) {
+      favCounter.text("");
+      favCounter.removeClass('active');
     }
   } else {
     if (type == "add") {
       favCounter.text(cookieCounter);
       favCounter.addClass('active');
     }
+
     if (type == "remove") {
-      if (cookieCounter > 0) {
+      if (controlFavs[0] !== "") {
         favCounter.text(cookieCounter);
       } else {
         favCounter.text('');

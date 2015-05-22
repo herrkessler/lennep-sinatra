@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var listToggleButton = $('.js-toggle-map-view'),
       mapWrapper = $('#map-wrapper'),
       venueWrapper = $('#venue-wrapper'),
@@ -12,7 +12,7 @@ $(document).ready(function(){
       modal = $('#modal-wrapper'),
       continueButton = $('#continue');
 
-  listToggleButton.on('click', function(event){
+  listToggleButton.on('click', function(event) {
     event.preventDefault();
     if ($(this).hasClass('active')) {
       $(this).removeClass('active').find('.fa-map-marker').addClass('fa-list').removeClass('fa-map-marker');
@@ -25,40 +25,42 @@ $(document).ready(function(){
     }
   });
 
-  $(window).scroll(function(){
+  $(window).scroll(function() {
     var windowPosition = $(window).scrollTop();
 
     if (windowPosition > mapHeight) {
       mapLink.addClass('active');
     }
+
     if (windowPosition < mapHeight) {
       mapLink.removeClass('active');
     }
   });
 
   if (sessionUserStatus) {
-    console.log('Session');
+
     favouriteButton.on('click', function(event) {
       var selectedVenue = $(this).closest('.venue').data('id');
       if ($(this).hasClass('faved')) {
         $(this).removeClass('faved');
         updateFavs("remove");
-        $.get('/venues/'+selectedVenue+'/delete/'+sessionUserId, function() {
+        $.get('/venues/' + selectedVenue + '/delete/' + sessionUserId, function() {
         });
       } else {
         $(this).addClass('faved');
         updateFavs("add");
-        $.get('/venues/'+selectedVenue+'/add/'+sessionUserId, function() {
+        $.get('/venues/' + selectedVenue + '/add/' + sessionUserId, function() {
         });
       }
     });
+    
   } else {
-    if ($.cookie('favourites') === undefined){
-     $.cookie('favourites', '', { expires: 2, path: '/' });
+    if ($.cookie('favourites') === undefined) {
+      $.cookie('favourites', '', { expires: 2, path: '/' });
     } else {
       var venueList = $.cookie('favourites').split(/,/);
-      $('.card').each(function(){
-        if ($.inArray($(this).attr('data-id'),venueList) != -1) {
+      $('.card').each(function() {
+        if ($.inArray($(this).attr('data-id'), venueList) != -1) {
           $(this).find('.card-favourite-indicator').addClass('faved');
         }
       });
@@ -69,6 +71,10 @@ $(document).ready(function(){
 
       var venueID = $(this).closest('.card').data('id') ;
       var venueList = $.cookie('favourites').split(/,/);
+
+      if (venueList[0] === "") {
+        venueList = [];
+      }
 
       if ($.cookie('favourites') !== "") {
 
@@ -97,7 +103,7 @@ $(document).ready(function(){
     });
   }
 
-  continueButton.on('click', function(event){
+  continueButton.on('click', function(event) {
     event.preventDefault();
     modal.removeClass('active');
   });

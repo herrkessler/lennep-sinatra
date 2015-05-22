@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var faveButton = $('.js-venue-faved-button'),
       venueID = $('#venue-profile').data('id').toString(),
       favesList = $.cookie('favourites').split(/,/),
@@ -7,7 +7,7 @@ $(document).ready(function(){
 
   console.log(venueID, favesList);
 
-  if ($.inArray(venueID,favesList) != -1) {
+  if ($.inArray(venueID, favesList) != -1) {
     faveButton.addClass('faved').text('Aus meinen Favouriten entfernen');
   } else {
     faveButton.removeClass('faved');
@@ -44,7 +44,7 @@ $(document).ready(function(){
     }
   });
 
-  continueButton.on('click', function(event){
+  continueButton.on('click', function(event) {
     event.preventDefault();
     modal.removeClass('active');
   });
