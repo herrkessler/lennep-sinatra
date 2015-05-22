@@ -25,6 +25,10 @@ nav#main-navigation
           span.favourite-counter class=('active' if @sessionUser.venues.length > 0)
             - if @sessionUser.venues.length > 0
               = @sessionUser.venues.length
+        li.main-navigation-list-item.avatar
+          img.main-navigation-avatar src=@sessionUser.gravatarURL
+          a href="/users/#{@sessionUser.id}"
+            = @sessionUser.username
         - if @sessionUser.admin
           li.main-navigation-list-item.user
             a.button.admin href="/users" user
