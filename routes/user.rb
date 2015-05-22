@@ -53,16 +53,16 @@ class Lennep < Sinatra::Base
         mandrill = Mandrill::API.new 'szZU6o0dhGUZ-e2dQEqdyg'
         message = {
             :subject => 'Howdy, ' + @user.forename,
-            :from_name => "hello@kletterpartner.io",
-            :text => 'Willkommen bei kletterpartner.io, your place to find new climbers.',
+            :from_name => "lennep.map",
+            :text => 'Willkommen bei lennep.map.',
             :to => [
                 {
                     :email => @user.email,
                     :name => @user.forename
                  }
             ],
-            :html =>'<html><b>Willkommen bei kletterpartner.io, your place to find new climbers.</b></html>',
-            :from_email => "hello@kletterpartner.io"
+            :html =>'<html><b>Willkommen bei lennep.map.</b></html>',
+            :from_email => "willkommen@lennep.map"
         }
         sending = mandrill.messages.send message
 
