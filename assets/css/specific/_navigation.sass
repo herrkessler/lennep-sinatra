@@ -10,7 +10,7 @@
   display: inline
   margin-right: $default-margin
   position: relative
-  &.login, &.logout, &.dash, &.mobile, &.signup, &.mobile-map
+  &.login, &.logout, &.dash, &.mobile, &.signup, &.mobile-map, &.mobile-avatar
     float: right
     margin-right: 0
     margin-left: $default-margin
@@ -22,7 +22,7 @@
     &.active
       z-index: 99999
       position: relative
-  &.mobile, &.mobile-map
+  &.mobile, &.mobile-map, &.mobile-avatar
     display: none
     color: white
   &.login, &.logout, &.signup
@@ -44,12 +44,15 @@
     margin-left: $default-margin/2!important
     &.tour, &.blog, &.poi, &.user, &.category, &.favourites
       display: none
-    &.mobile, &.mobile-map
+    &.mobile, &.mobile-map, &.mobile-avatar
       display: block
 
 .main-navigation-avatar
   +size(20px)
   border-radius: 50%
+  .mobile-avatar &
+    +size(26px)
+    margin-top: -4px
 
 #mobile-navigation
   +cover-all
