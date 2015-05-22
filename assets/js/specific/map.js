@@ -8,7 +8,7 @@ function getUrlParameter(sParam) {
     if (sURLVariables[0] === '') {
       return '';
     } else {
-      return '?'+sURLVariables[0];
+      return '?' + sURLVariables[0];
     }
   } else {
     for (var i = 0; i < sURLVariables.length; i++) {
@@ -23,22 +23,22 @@ function getUrlParameter(sParam) {
 function getMap(data) {
   var venues = data;
 
-  $.each(venues, function(index, venue){
+  $.each(venues, function(index, venue) {
     geojson.push(
       {
         "type": "Feature",
         "geometry": {
           "type": "Point",
-          "coordinates": [venue.location.lng,venue.location.lat]
+          "coordinates": [venue.location.lng, venue.location.lat]
         },
         "properties": {
           "title": venue.title,
-          "description": venue.street +'<br/>'+venue.zip+' '+venue.town,
+          "description": venue.street + '<br/>' + venue.zip + ' ' + venue.town,
           "marker-color": venue.categories[0].colour,
           'marker-symbol': venue.categories[0].icon,
           "marker-size": "large",
           "url": '/venues/' + venue.id,
-          "image" : venue.mainImage,
+          "image": venue.mainImage,
           "city": venue.town,
         }
       }
@@ -56,15 +56,15 @@ function getMap(data) {
   myLayer.setGeoJSON(geojson);
 
   myLayer.on('mouseover', function(e) {
-      e.layer.openPopup();
+    e.layer.openPopup();
   });
   myLayer.on('mouseout', function(e) {
-      e.layer.closePopup();
+    e.layer.closePopup();
   });
   myLayer.on('click', function(e) {
-      e.layer.unbindPopup();
-      var url = window.location.href;
-      window.location.assign(e.layer.feature.properties.url);
+    e.layer.unbindPopup();
+    var url = window.location.href;
+    window.location.assign(e.layer.feature.properties.url);
   });
   var geolocate =           $('.js-find-on-map'),
       geolocateWrapper =    $('#gelocation-wrapper'),
@@ -73,7 +73,7 @@ function getMap(data) {
 
   // Functions
 
-  resetAllFilter.click(function(){
+  resetAllFilter.click(function() {
     myLayer.setFilter(function(f) {
       selectedCategory.removeClass('highlight reversed');
       resetAllFilter.removeClass('active');
@@ -83,7 +83,7 @@ function getMap(data) {
   });
 
   if (!navigator.geolocation) {
-      geolocate.innerHTML = 'Geolocation is not available';
+    geolocate.innerHTML = 'Geolocation is not available';
   } else {
     geolocate.click(function(e) {
       e.preventDefault();
@@ -93,28 +93,28 @@ function getMap(data) {
   }
 
   map.on('locationfound', function(e) {
-      map.fitBounds(e.bounds);
+    map.fitBounds(e.bounds);
 
-      whereAmI.setGeoJSON({
-          type: 'Feature',
-          geometry: {
-              type: 'Point',
-              coordinates: [e.latlng.lng, e.latlng.lat]
-          },
-          properties: {
-              'title': 'Hier bin ich!',
-              'marker-color': '#2980B9',
-              'marker-symbol': 'pitch',
-              'marker-size': 'large'
-          }
-      });
+    whereAmI.setGeoJSON({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [e.latlng.lng, e.latlng.lat]
+      },
+      properties: {
+        'title': 'Hier bin ich!',
+        'marker-color': '#2980B9',
+        'marker-symbol': 'pitch',
+        'marker-size': 'large'
+      }
+    });
 
-      whereAmI.eachLayer(function(m) {
+    whereAmI.eachLayer(function(m) {
         m.openPopup();
       });
   });
 
-  selectedCategory.on('click', function(event){
+  selectedCategory.on('click', function(event) {
     resetAllFilter.addClass('active');
     event.preventDefault();
     var cName = $(this).data('id');
@@ -159,5 +159,4 @@ $.ajax({
     console.log(data);
   }
 });
-
 

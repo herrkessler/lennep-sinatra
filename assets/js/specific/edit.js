@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var venueCategoryButton = $('.js-set-category'),
       venueID = $('.edit-data').data('id');
 
-  venueCategoryButton.on('click', function(event){
+  venueCategoryButton.on('click', function(event) {
 
     event.preventDefault();
 
@@ -10,7 +10,7 @@ $(document).ready(function(){
         categoryID = venueCategorySelector.val();
 
     $.ajax({
-      url: '/venues/'+venueID+'/addCategory/'+categoryID,
+      url: '/venues/' + venueID + '/addCategory/' + categoryID,
       dataType: 'json',
       contentType: 'application/json',
       type: 'GET',

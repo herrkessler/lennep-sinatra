@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var mobileNavButton = $('.js-mobile-menu-link'),
       mobileNav = $('#mobile-navigation'),
       indexLink = $('.main-navigation-list-item.index'),
@@ -6,7 +6,7 @@ $(document).ready(function(){
       mapNavigation = $('#map-navigation'),
       favLink = $('.js-favourites-link a');
 
-  mobileNavButton.on('click', function(){
+  mobileNavButton.on('click', function() {
     if ($(this).hasClass('active')) {
       $(this).removeClass('active fa-times').addClass('fa-bars');
       mobileNav.removeClass('active');
@@ -18,7 +18,7 @@ $(document).ready(function(){
     }
   });
 
-  filterMapButton.on('click', function(event){
+  filterMapButton.on('click', function(event) {
     event.preventDefault();
     if ($(this).hasClass('active')) {
       $(this).removeClass('active');
@@ -29,12 +29,12 @@ $(document).ready(function(){
     }
   });
 
-  favLink.on('click', function(event){
+  favLink.on('click', function(event) {
     event.preventDefault();
     event.preventDefault();
     var favs = $.cookie('favourites');
     var host = window.location.host;
-    var newUrl = 'http://'+host+'/favourites?favs='+favs;
+    var newUrl = 'http://' + host + '/favourites?favs=' + favs;
     window.location.assign(newUrl);
   });
 
