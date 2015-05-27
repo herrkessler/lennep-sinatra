@@ -6,14 +6,14 @@ section#user
     .user-avatar
       img src="#{@user.gravatarURL}"
 
-    - if @user_venues.length > 0
-      #venues
-        h2 Meine Favouriten
-        hr
+    / - if @user_venues.length > 0
+    /   #venues
+    /     h2 Meine Favouriten
+    /     hr
 
-        ul.venues
-          - @user_venues.each do |venue|
-            == slim :"venue/venue", :locals => {venue: venue}
+    /     ul.venues
+    /       - @user_venues.each do |venue|
+    /         == slim :"venue/venue", :locals => {venue: venue}
 
     - if @sessionUser.admin == true
       .border

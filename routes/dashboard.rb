@@ -7,6 +7,8 @@ class Lennep < Sinatra::Base
     env['warden'].authenticate!
     @user = User.get(params[:id])
     @user_venues = @user.venues.sort_by {|venue| venue.title}
+    @favs = @user.favourites
+    @favourites = @favs.venues
 
     # Render View
 

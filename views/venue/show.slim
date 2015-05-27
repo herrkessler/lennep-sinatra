@@ -1,6 +1,5 @@
 .container
   #venue
-
     #venue-profile data-id=@venue.id
       h1 = @venue.title
       - @venue.categories.each do |category|
@@ -35,7 +34,7 @@
 
 
     - if @sessionUser
-      - if @sessionUser.venues.include?(@venue)
+      - if @isFavourite > 0
         a.button.icon href="/venues/#{@venue.id}/delete/#{@sessionUser.id}" 
           i.fa.fa-times.fa-fw
           span Aus meinen Favouriten entfernen

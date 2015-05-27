@@ -18,6 +18,7 @@ class User
   property :update_at, DateTime, :lazy => [ :show ]
 
   has n, :venues, :through => Resource
+  has n, :favourites, :through => Resource
 
   before :save, :gravatar
 

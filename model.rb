@@ -20,6 +20,7 @@ require_relative "models/user"
 require_relative "models/venue"
 require_relative "models/post"
 require_relative "models/category"
+require_relative "models/favourite"
 
 # -----------------------------------------------------------
 # DataMapper Finalization
@@ -33,15 +34,15 @@ DataMapper.auto_upgrade!
 # -----------------------------------------------------------
 
 if User.count == 0
-  @user = User.new()
-  @user.username = "admin"
-  @user.email = "admin@lennep.map"
-  @user.password = "admin"
-  @user.forename = "the ADMIN"
-  @user.familyname = ""
-  @user.admin = true
-  @user.avatar = ""
-  @user.save
+  user = User.new()
+  user.username = "admin"
+  user.email = "admin@lennep.map"
+  user.password = "admin"
+  user.forename = "the ADMIN"
+  user.familyname = ""
+  user.admin = true
+  user.avatar = ""
+  user.save
 end
 
 if Post.count == 0
@@ -54,7 +55,6 @@ if Post.count == 0
 end
 
 if Venue.count == 0
-
   venue = Venue.new()
   venue.attributes = {:title => "Pizzeria Daunia"}
   venue.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
@@ -63,4 +63,22 @@ if Venue.count == 0
   venue.town = "Wuppertal"
   venue.url = "http://www.wupperwaende.de/"
   venue.save
+end
+
+
+if Favourite.count == 0
+  user = User.get(14)
+  venue = Venue.get(4)
+  favourite = Favourite.new()
+
+  favourite.user_id = user.id
+  favourite.venue_id = venue.id
+
+  user.favourites << favourite
+  user.favourites.save
+
+  venue.favourites << favourite
+  venue.favourites.save
+  
+  favourite.save
 end

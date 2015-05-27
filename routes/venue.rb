@@ -46,6 +46,7 @@ class Lennep < Sinatra::Base
   get '/venues/:id' do
     @sessionUser = env['warden'].user
     @venue = Venue.get(params[:id])
+    @isFavourite = Favourite.count(:user_id => @sessionUser.id, :venue_id => @venue.id)
     if @venue != nil
       slim :"venue/show", :layout => :layout_venue_show
     else
@@ -123,9 +124,14 @@ class Lennep < Sinatra::Base
     env['warden'].authenticate!
     venue = Venue.get(params[:id])
     user = User.get(params[:user])
-    user.venues << venue
-    user.save
-    user.venues.save
+    favourite = Favourite.new()
+    favourite.user_id = user.id
+    favourite.venue_id = venue.id
+    user.favourites << favourite
+    user.favourites.save
+    venue.favourites << favourite
+    venue.favourites.save
+    favourite.save
     if request.xhr?
       halt 200
     else
@@ -138,7 +144,10 @@ class Lennep < Sinatra::Base
     env['warden'].authenticate!
     venue = Venue.get(params[:id])
     user = User.get(params[:user])
-    UserVenue.all(:user_id => user.id, :venue_id => venue.id).destroy
+    favourite = Favourite.first(:user_id => user.id, :venue_id => venue.id)
+    FavouriteUser.all(:user_id => user.id, :favourite_id => favourite.id).destroy
+    FavouriteVenue.all(:venue_id => venue.id, :favourite_id => favourite.id).destroy
+    favourite.destroy
     if request.xhr?
       halt 200
     else

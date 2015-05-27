@@ -19,6 +19,7 @@ class Venue
   property :update_at, DateTime, :lazy => [ :show ]
 
   has n, :categories, :through => Resource
+  has n, :favourites, :through => Resource
 
   before :save do
     full_address = self.street, self.zip, self.town
