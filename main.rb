@@ -176,5 +176,6 @@ class Lennep < Sinatra::Base
   require_relative 'routes/venue'
   require_relative 'routes/category'
   require_relative 'routes/favs'
+  require_relative 'routes/dashboard'
 
 end

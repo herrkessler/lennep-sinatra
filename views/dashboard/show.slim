@@ -1,0 +1,25 @@
+section#dashboard
+  .container
+    h1 
+      | Hallo 
+      = @user.forename
+      |, willkommen!
+    hr
+    .user-avatar
+      img src="#{@user.gravatarURL}"
+
+    - if @user_venues.length > 0
+      #venues
+        h2 Meine Favouriten
+        hr
+
+        ul.venues
+          - @user_venues.each do |venue|
+            == slim :"venue/venue", :locals => {venue: venue}
+
+    - if @sessionUser.admin == true
+      .border
+      .admin-button-wrapper
+        form action="/users/#{@user.id}" method="POST"
+          input type="hidden" name="_method" value="DELETE"
+          input.button.admin type="submit" value="Delete THIS User"
