@@ -10,11 +10,11 @@ class Lennep < Sinatra::Base
 
     # Render View
 
-    if @user != nil
+    if @user == env['warden'].user
       @sessionUser = env['warden'].user
       slim :"dashboard/show"
     else
-      flash[:error] = 'What you are looking for does not exist'
+      flash[:error] = 'You are not allowed to view this site!'
       redirect to("/")
     end
   end
