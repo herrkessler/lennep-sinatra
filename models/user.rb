@@ -12,6 +12,7 @@ class User
   property :admin, Boolean, :default  => false, :lazy => [ :show ]
   property :avatar, String
   property :gravatarURL, URI
+  property :role, Enum[ :user, :provider], :default => :user
 
   property :created_at, DateTime, :lazy => [ :show ]
   property :update_at, DateTime, :lazy => [ :show ]
