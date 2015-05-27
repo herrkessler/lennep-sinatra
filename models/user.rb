@@ -22,7 +22,7 @@ class User
   before :save, :gravatar
 
   def gravatar
-    self.gravatarURL = gravatar_url(self, :size => 200, :default => 'retro', :secure => true)
+    self.gravatarURL = gravatar_url(self, :size => 200, :default => 'mm', :secure => true)
   end
 
   def authenticate(attempted_password)
