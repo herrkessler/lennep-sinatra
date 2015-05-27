@@ -43,8 +43,9 @@ nav#main-navigation
         li.main-navigation-list-item.mobile-avatar
           a href="/users/#{@sessionUser.id}"
             img.main-navigation-avatar src=@sessionUser.gravatarURL
-        li.main-navigation-list-item.provider
-          a.button.highlight href="/dashboard/#{@sessionUser.id}" Dashboard
+        - if @sessionUser.role = "provider"
+          li.main-navigation-list-item.provider
+            a.button.highlight href="/dashboard/#{@sessionUser.id}" Dashboard
 
 nav#mobile-navigation
   ul.mobile-navigation-list
