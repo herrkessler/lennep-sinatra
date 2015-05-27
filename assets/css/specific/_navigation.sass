@@ -10,7 +10,7 @@
   display: inline
   margin-right: $default-margin
   position: relative
-  &.login, &.logout, &.dash, &.mobile, &.signup, &.mobile-map, &.mobile-avatar
+  &.login, &.logout, &.dash, &.mobile, &.signup, &.mobile-map, &.mobile-avatar, &.provider
     float: right
     margin-right: 0
     margin-left: $default-margin
@@ -25,7 +25,7 @@
   &.mobile, &.mobile-map, &.mobile-avatar
     display: none
     color: white
-  &.login, &.logout, &.signup
+  &.login, &.logout, &.signup, &.provider
     a
       margin-top: -11px
   &.admin
@@ -49,7 +49,7 @@
   +media($mobile)
     vertical-align: bottom
     margin-left: $default-margin/2!important
-    &.tour, &.blog, &.poi, &.user, &.category, &.favourites, &.avatar
+    &.tour, &.blog, &.poi, &.user, &.category, &.favourites, &.avatar, &.provider
       display: none
     &.mobile, &.mobile-map, &.mobile-avatar
       display: block
