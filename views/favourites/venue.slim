@@ -6,8 +6,8 @@ li.card.venue data-id=venue.id
           img src="#{venue.gallery.first}"
         - else
             img src="/images/site.jpg"
-        .card-favourite-indicator.faved
-          i.fa.fa-heart
+        / .card-favourite-indicator.faved
+        /   i.fa.fa-heart
       / - venue.categories.each do |category|
       /   .maki-icon-wrapper style="background-color:#{category.colour}"
       /     i.maki-icon.white class="#{category.icon}"
