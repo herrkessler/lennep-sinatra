@@ -7,7 +7,7 @@ li.card.venue data-id=venue.id
         - else
             img src="/images/site.jpg"
         - if @sessionUser
-          .card-favourite-indicator class=('faved' if @sessionUser.venues.include? venue)
+          .card-favourite-indicator class=('faved' if @userVenues.include? venue.id)
             i.fa.fa-heart
         - else
           .card-favourite-indicator

@@ -7,6 +7,13 @@ class Lennep < Sinatra::Base
     @sessionUser = env['warden'].user
     @venues = Venue.all.paginate(:page => params[:page], :per_page => 35)
     @categories = Category.all
+    if @sessionUser != nil
+      favs = @sessionUser.favourites
+      @userVenues = []
+      favs.each do |fav|
+        @userVenues << fav.venue.id
+      end
+    end
     slim :"venue/index", :layout => :layout_venue
   end
 
@@ -46,7 +53,9 @@ class Lennep < Sinatra::Base
   get '/venues/:id' do
     @sessionUser = env['warden'].user
     @venue = Venue.get(params[:id])
-    @isFavourite = Favourite.count(:user_id => @sessionUser.id, :venue_id => @venue.id)
+    if @sessionUser != nil
+      @isFavourite = Favourite.count(:user_id => @sessionUser.id, :venue_id => @venue.id)
+    end
     if @venue != nil
       slim :"venue/show", :layout => :layout_venue_show
     else
