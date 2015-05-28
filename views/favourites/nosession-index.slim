@@ -1,0 +1,20 @@
+section#user
+  .container
+    h1 Meine Favouriten
+    hr
+    - if @favs.length > 0
+      #venues
+        ul.venues
+          - @favs.each do |fav|
+            == slim :"favourites/venue", :locals => {venue: fav}
+      .back-link-wrapper
+        p 
+          | Mehr Favouriten hinzufügen?
+          br 
+          | Zurück zur 
+          a.button.reversed href="/venues" Karte
+    - else 
+      #venues
+        p 
+          | Du hast noch keine Favouriten, zurück zur 
+          a.button.reversed href="/venues" Karte? 
