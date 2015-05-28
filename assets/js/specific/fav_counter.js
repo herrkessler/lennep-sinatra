@@ -33,6 +33,11 @@ function updateFavs(type) {
       initialCount = parseInt(favCounter.text()),
       controlFavs = $.cookie('favourites').split(/,/);
 
+  favCounter.addClass('add');
+  setTimeout(function(){
+    favCounter.removeClass('add');
+  }, 300);
+
   if (sessionUserStatus) {
     if (type == "add") {
       favCounter.addClass('active');
