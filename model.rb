@@ -67,8 +67,8 @@ end
 
 
 if Favourite.count == 0
-  user = User.get(14)
-  venue = Venue.get(4)
+  user = User.get(1)
+  venue = Venue.get(1)
   favourite = Favourite.new()
 
   favourite.user_id = user.id
