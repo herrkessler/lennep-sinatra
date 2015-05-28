@@ -75,7 +75,7 @@ function getMap(data) {
 
   resetAllFilter.click(function() {
     myLayer.setFilter(function(f) {
-      selectedCategory.removeClass('highlight reversed');
+      selectedCategory.removeClass('active');
       resetAllFilter.removeClass('active');
       return true;
     });
@@ -118,7 +118,7 @@ function getMap(data) {
     resetAllFilter.addClass('active');
     event.preventDefault();
     var cName = $(this).data('id');
-    $(this).addClass('highlight reversed').closest('.category-list-item').siblings().find('a').removeClass('highlight reversed');
+    $(this).addClass('active').closest('.category-list-item').siblings().find('a').removeClass('active');
     myLayer.setFilter(function(f) {
       return f.properties['marker-symbol'] === cName;
     });

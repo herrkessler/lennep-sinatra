@@ -20,7 +20,7 @@ article#venue-search
         ul.category-list
           - @categories.each do |category|
             li.category-list-item
-              a.button.white href="#" data-id="#{category.icon}"
+              a.button.white href="#" data-id="#{category.icon}" class="#{category.slug}"
                 = category.title
   section#venue-wrapper
     #venues

@@ -70,3 +70,9 @@
 .category-list-item
   display: inline-block
   margin-right: $default-margin/2
+  .button
+    @each $name, $color in $categories
+      &.#{$name}
+        &.active
+          background: #{$color}
+          border-color: #{$color}
