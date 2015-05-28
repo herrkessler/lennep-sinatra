@@ -14,11 +14,11 @@
                 i.fa.fa-arrow-circle-o-left
               .venue-gallery-nav.right
                 i.fa.fa-arrow-circle-o-right
-            img#venue-hero-image src="#{@venue.gallery.first}"
+            == img "#{@venue.gallery.first}", id: "venue-hero-image"
           ul.venue-gallery-list
             - @venue.gallery.each_with_index do |image, index|
               li.venue-gallery-list-item data-id=index+1 class=('selected' if index == 0)
-                img src="#{image}"
+                == img"#{image}"
 
         #venue-info
           h2 = @venue.title
