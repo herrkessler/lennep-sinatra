@@ -119,5 +119,8 @@
   font-size: 12px
   font-weight: bold
   display: inline-block
+  @include transition(transform 0.1s linear)
   &.active
     background: $highlight
+  &.add
+    @include transform(scale(1.2))
